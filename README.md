@@ -1,6 +1,6 @@
 #dotfiles
 
-A great place to learn about Dotfiles.
+A good place to learn about Dotfiles.
 
 ##Articles about Dotfiles
 
