@@ -1,4 +1,4 @@
-#dotfiles
+#Dotfiles
 
 A good place to learn about Dotfiles.
 
@@ -59,7 +59,7 @@ briancain     | https://github.com/briancain/starter-dotfiles
 kevinelliott  | https://github.com/kevinelliott/.dotfiles 
 s10wen        | https://github.com/s10wen/dotfiles/
 
-##Tools
+##Dotfile Tools
 - [**dotfiles**](https://github.com/jbernard/dotfiles) - _Dotfile management made easy_
 - [**Homesick**](https://github.com/technicalpickles/homesick) - _Your home directory is your castle. Don't leave your dotfiles behind._
 - [**Mackup**](https://github.com/lra/mackup) - _Keep your application settings in sync using Cloud Storage (OS X/Linux)_
