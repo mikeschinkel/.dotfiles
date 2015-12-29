@@ -58,6 +58,7 @@ erangaeb      | https://github.com/erangaeb/dotfiles
 briancain     | https://github.com/briancain/starter-dotfiles 
 kevinelliott  | https://github.com/kevinelliott/.dotfiles 
 s10wen        | https://github.com/s10wen/dotfiles/
+andrewwoods   | https://github.com/andrewwoods/opal
 
 ##Dotfile Tools
 - [**dotfiles**](https://github.com/jbernard/dotfiles) - _Dotfile management made easy_
