@@ -11,19 +11,24 @@ Inspired by [Kevin Elliott's excellent Gist](https://gist.github.com/kevinelliot
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew doctor
 	
-###Homebrew's Cask
+###Homebrew's Cask and CakeBrew
 	brew install caskroom/cask/brew-cask
+	brew cask install cakebrew
+	
+###Homebrew Completions
+	brew install homebrew/completions/brew-cask-completion
 
 ###Git/wget/iTerm2
 	brew install git wget iterm2
 
-###Docker/VirtualBox/Vagrant/Puppet
+###Docker/VirtualBox/Vagrant/Puppet/Ansible
 	brew install docker
 	brew cask install dockertoolbox
 	brew cask install virtualbox
     brew cask install vagrant
     brew cask install vagrant-manager
 	brew cask install puppet
+	brew install ansible
 
 ###Docker/VirtualBox/Vagrant/Puppet
 	brew install docker
