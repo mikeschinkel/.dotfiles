@@ -59,6 +59,7 @@ briancain     | https://github.com/briancain/starter-dotfiles
 kevinelliott  | https://github.com/kevinelliott/.dotfiles 
 s10wen        | https://github.com/s10wen/dotfiles/
 andrewwoods   | https://github.com/andrewwoods/opal
+monfresh      | https://github.com/monfresh/laptop.git
 
 ##Dotfile Tools
 - [**dotfiles**](https://github.com/jbernard/dotfiles) - _Dotfile management made easy_
