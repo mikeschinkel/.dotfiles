@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Display Git stuff in my prompt
-# 
+#
 # From http://slacy.com/blog/2012/06/supercharge-your-bash-prompt-with-git-status-goodness/
 #
 # TODO: Change repo to "{org}/{repo}" for origin (fetch)
@@ -35,7 +35,7 @@ function dev_prompt {
     repo="${bold}${green}$(basename $repo)$reset"
     git=1
   fi
-  
+
   if [ $git -ne 0 ]; then
     branch=$(git branch | grep "*" | awk '{print $2}')
     if [ $? -ne 0 ]; then
@@ -62,7 +62,7 @@ function dev_prompt {
   fi
   httpd="${httpd}${reset}${purple}]${reset}"
 
-  PS1="${httpd}\n$dir$reset${green}\$$reset "
+  PS1="\n${httpd}\n$dir$reset${green}\$$reset "
   if [ $git -ne 0 ]; then
     git="$bold${orange}GIT${reset}: $repo, $branch,"
     PS1="\n${git} ${PS1}"
