@@ -193,9 +193,6 @@ defaults write com.apple.safari IncludeDebugMenu -bool YES
 #Deactivate Dashboard.
 defaults write com.apple.dashboard mcx-disabled -bool YES && killall Dock
 
-CFPreferencesAppSynchronize "com.apple.finder"
-
-
 
 ######################
 ### Chrome Specific
