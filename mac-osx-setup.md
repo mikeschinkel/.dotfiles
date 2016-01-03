@@ -3,38 +3,72 @@
 A document shows how to setup a new Mac for WordPress development.
 
 Inspired by [Kevin Elliott's excellent Gist](https://gist.github.com/kevinelliott/e12aa642a8388baf2499).
+Also kudos to:
+
+- [Moncef Belyamani](https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/)
+- [Mathias Bynens](https://github.com/mathiasbynens/dotfiles/blob/master/.osx)
 
 ##Installing 
 
 
+###XCode Command Line Tools
+	sudo xcode-select --install
+
 ###Homebrew
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew doctor
-	
+
 ###Homebrew's Cask and CakeBrew
-	brew install caskroom/cask/brew-cask
-	brew cask install cakebrew
-	
+	sudo brew install caskroom/cask/brew-cask
+	sudo brew cask install cakebrew
+
 ###Homebrew Completions
 	brew install homebrew/completions/brew-cask-completion
 
-###Git/wget/iTerm2
-	brew install git wget iterm2
+###wget/iTerm2/Git
+	sudo brew install iterm2
+	brew install wget
 
-###Docker/VirtualBox/Vagrant/Puppet/Ansible
-	brew install docker
-	brew cask install dockertoolbox
-	brew cask install virtualbox
-    brew cask install vagrant
-    brew cask install vagrant-manager
-	brew cask install puppet
-	brew install ansible
+###Git & Configuration
+	$ brew install git
+    $ git config --global user.name "Your Name Here"
+    $ git config --global user.email "your_name@domain.com"
+    $ git config --global credential.helper osxkeychain
+    $ cd ~/.ssh
+	$ ssh-keygen -t rsa -C "your_email@domain.com"
+	$ pbcopy < ~/.ssh/id_rsa.pub
+	(browser) https://github.com/settings/ssh
+	ssh -T git@github.com	
 
-###Docker/VirtualBox/Vagrant/Puppet
-	brew install docker
-	brew cask install dockertoolbox
-	brew cask install virtualbox
+###VirtualBox/Vagrant/Puppet
+####Version 4.3.x
+
+[Go here](https://github.com/thecodersguild/quick-start-installing-virtualbox-on-mac-os-x#version-43x).
+
+####Version 5.0.x
+
+	sudo brew cask install virtualbox
 	brew cask install virtualbox-extension-pack
+   
+###Vagrant/Puppet
+
+See [**_From the Ground Up:_ Learning Vagrant for WordPress on Mac OS X**](https://github.thecodersguild/learning-vagrant-for-wordpress)
+
+Or:
+
+    brew cask install vagrant
+    sudo brew cask install vagrant-manager
+    open -a Vagrant\ Manager.app
+	brew cask install puppet
+	
+###Ansible/Docker
+	brew install ansible
+	brew install docker
+	brew cask install dockertoolbox
+
+###Vagrant/Puppet/Docker
+	brew install docker
+	brew cask install dockertoolbox
     brew cask install vagrant
     brew cask install vagrant-manager
 	brew cask install puppet
@@ -51,39 +85,24 @@ Inspired by [Kevin Elliott's excellent Gist](https://gist.github.com/kevinelliot
 ###dotfiles
 
 	git clone git@github.com:mikeschinkel/dotfiles.git ~/dotfiles.git
-	echo 'source ~/.dotfiles/.bash_profile' >> ~/.bash_profile
+	
 
 ###PHP/autoconf/Pear/Pecl
+
+
 	cd ~/.dotfiles
 	brew install autoconf
 	brew install homebrew/php/php55-xdebug
-		
 	sudo cat php-extra.ini >> /etc/php.ini
-
-
 	# http://jason.pureconcepts.net/2012/10/install-pear-pecl-mac-os-x/
 	chmod +x expect-pear.sh
 	./expect-pear.sh
-    
+
 
 ###OS X
 
-        #Set a blazingly fast keyboard repeat rate
-        defaults write NSGlobalDomain KeyRepeat -int 0.02
-        
-        #Set a shorter Delay until key repeat
-        defaults write NSGlobalDomain InitialKeyRepeat -int 12
-        
-        #Add a context menu item for showing the Web Inspector in web views
-        defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
-        
-        #Show the ~/Library folder
-        chflags nohidden ~/Library
-        
-        #Store screenshots in subfolder on desktop
-        mkdir ~/Desktop/Screenshots
-        defaults write com.apple.screencapture location ~/Desktop/Screenshots
-        
+OS X specific are in settings in [.osx.sh](.osx.sh).
+
 ###More to Come
 - Git?
 - MySQL?
