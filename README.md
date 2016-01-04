@@ -14,7 +14,7 @@ A good place to learn about Dotfiles.
 - [Managing your dotfiles the right way](http://www.placona.co.uk/1224/linux/managing-your-dotfiles-the-right-way/)
 - [Manage your dotfiles with ease](http://gee-bee.github.io/manage-your-dotfiles-with-ease/)
 - [Never Leave Your Dotfiles Behind Again With Homesick](http://technicalpickles.com/posts/never-leave-your-dotfiles-behind-again-with-homesick/)
-- [dotfiles hooray!](dotfiles hooray!)
+- [dotfiles hooray!](http://frankfuchs.net/articles/12/dotfiles-hooray)
 - [Common .dotfiles explained](http://www.stsci.edu/old/cisd/software/UNIX/dotfiles.html)
 - [keeping your dotfiles in git](http://blog.ociru.net/2013/03/15/keeping-your-dotfiles-in-git)
 - [.dotfiles - by clijockey/Rob Edwards](https://clijockey.com/dotfiles/)

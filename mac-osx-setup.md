@@ -1,8 +1,9 @@
 #Mac OSX Setup
 
-A document shows how to setup a new Mac for WordPress development.
+A document is an evolution showing how to setup a new Mac _(for WordPress development)_ and/or the README on an evolving repo of scripts to set up a new Mac.
 
 Inspired by [Kevin Elliott's excellent Gist](https://gist.github.com/kevinelliott/e12aa642a8388baf2499).
+
 Also kudos to:
 
 - [Moncef Belyamani](https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/)
@@ -22,6 +23,9 @@ Also kudos to:
 	$ pbcopy < ~/.ssh/id_rsa.pub
 	(browser) https://github.com/settings/ssh
 	ssh -T git@github.com	
+	
+####.gitignore files
+https://github.com/github/gitignore
 
 ###VirtualBox/Vagrant/Puppet
 ####Version 4.3.x
@@ -64,6 +68,8 @@ Or:
 	npm install gulp --global
 	npm install bower --global
 
+###PhpStorm
+	sudo brew cask install phpstorm
 
 ###dotfiles
 

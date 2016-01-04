@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# Sets paths.  
+# Sets paths.
 # For Default Paths see: http://stackoverflow.com/a/9832813/102699
 #
 
-echo "Running .bash_paths..."
+echo "Running .dotfiles/bash_paths..."
 
 add_path() {
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
