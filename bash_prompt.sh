@@ -8,7 +8,7 @@
 #
 #       git remote -v | grep "(fetch)" | grep "origin"
 #
-echo "Running .dotfiles/bash_prompt..."
+echo "Running .dotfiles/bash_prompt.sh..."
 
 txtund=$(tput sgr 0 1)          # Underline
 txtbld=$(tput bold)             # Bold
