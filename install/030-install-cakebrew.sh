@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo Installing Caskroom...
+sudo brew cask install cakebrew

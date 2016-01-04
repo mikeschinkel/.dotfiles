@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo Installing wget...
+brew install wget

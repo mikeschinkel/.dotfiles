@@ -10,24 +10,7 @@ Also kudos to:
 
 ##Installing 
 
-
-###XCode Command Line Tools
-	sudo xcode-select --install
-
-###Homebrew
-	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	brew doctor
-
-###Homebrew's Cask and CakeBrew
-	sudo brew install caskroom/cask/brew-cask
-	sudo brew cask install cakebrew
-
-###Homebrew Completions
-	brew install homebrew/completions/brew-cask-completion
-
-###wget/iTerm2/Git
-	sudo brew install iterm2
-	brew install wget
+	
 
 ###Git & Configuration
 	$ brew install git
