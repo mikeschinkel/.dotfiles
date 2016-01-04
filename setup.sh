@@ -7,5 +7,8 @@
 cd ~/
 sudo echo '#!/usr/bin/env bash' > ~/.bash_profile
 sudo echo 'cd .dotfiles && source ~/.dotfiles/bash_profile && cd ~/' >> ~/.bash_profile
-sudo chmod +x ~/.dotfiles/osx.sh
-sudo sh ~/.dotfiles/osx.sh
+cd ~/.dotfiles
+sudo chmod +x osx.sh
+sudo ./setup-osx.sh
+sudo chmod +x install.sh
+sudo ./setup-install.sh
