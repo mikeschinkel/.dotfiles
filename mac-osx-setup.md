@@ -14,7 +14,6 @@ Also kudos to:
 	
 
 ###Git & Configuration
-	$ brew install git
     $ git config --global user.name "Your Name Here"
     $ git config --global user.email "your_name@domain.com"
     $ git config --global credential.helper osxkeychain
@@ -23,6 +22,12 @@ Also kudos to:
 	$ pbcopy < ~/.ssh/id_rsa.pub
 	(browser) https://github.com/settings/ssh
 	ssh -T git@github.com	
+
+###HomeBrew 
+
+	$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	$ brew doctor
+	$ brew install git
 	
 ####.gitignore files
 https://github.com/github/gitignore
