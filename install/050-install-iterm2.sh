@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 echo Installing iTerm2...
-sudo brew install iterm2
+brew cask install iterm2
