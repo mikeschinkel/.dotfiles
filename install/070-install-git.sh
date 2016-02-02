@@ -8,4 +8,6 @@
 echo Installing Git...
 brew install git
 
+git config --global push.default simple
+
 
