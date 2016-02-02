@@ -1,3 +1,0 @@
-Name: Mike Schinkel
-Email: mike@newclarity.net
-VirtualBox: 4.3.x
