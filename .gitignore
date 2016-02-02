@@ -1,3 +1,8 @@
+.DS_Store
 .idea/
 repos/
-config/
+config/secrets.json
+.zip
+backup/Indev-new-setup.zip
+backup/Indev-old-setup.zip
+backup/Indev.zip
