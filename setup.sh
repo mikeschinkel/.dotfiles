@@ -4,11 +4,14 @@
 #
 # Eventually it will be almost fully complete.
 
-cd ~/
-sudo echo '#!/usr/bin/env bash' > ~/.bash_profile
-sudo echo 'cd .dotfiles && source ~/.dotfiles/bash_profile && cd ~/' >> ~/.bash_profile
+echo NOT FULLY TESTED
+exit
 cd ~/.dotfiles
-sudo chmod +x osx.sh
-sudo ./setup-osx.sh
-sudo chmod +x install.sh
-sudo ./setup-install.sh
+
+for FILE in setup/*.sh; do
+
+	sudo chmod +x "${FILE}"
+	source "${FILE}"
+
+done
+
