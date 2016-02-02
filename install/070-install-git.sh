@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-#!/usr/bin/env bash
-echo Installing git...
+#
+# Updating Git using Homebrew:
+#    http://www.pedropinhal.co.uk/2015/08/28/updating-git-homebrew/
+#
+
+echo Installing Git...
 brew install git
 
 
-echo ''
-echo Updating Git using Homebrew:
-echo     http://www.pedropinhal.co.uk/2015/08/28/updating-git-homebrew/
-echo ''
