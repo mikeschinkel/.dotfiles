@@ -15,13 +15,14 @@ Also kudos to:
 
 ###Git & Configuration
     $ git config --global user.name "Your Name Here"
-    $ git config --global user.email "your_name@domain.com"
+    $ git config --global user.email "your-email@domain.com"
     $ git config --global credential.helper osxkeychain
+    
     $ cd ~/.ssh
-	$ ssh-keygen -t rsa -C "your_email@domain.com"
-	$ pbcopy < ~/.ssh/id_rsa.pub
+	$ ssh-keygen -t rsa -C "your-email@domain.com" -f github-your-email\@domain.com
+	$ pbcopy < ~/.ssh/github-your-email\@domain.com.pub
 	(browser) https://github.com/settings/ssh
-	ssh -T git@github.com	
+	$ ssh -T -i github-your-email\@domain.com git@github.com
 
 ###HomeBrew 
 
