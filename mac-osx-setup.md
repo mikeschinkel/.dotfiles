@@ -59,13 +59,6 @@ Or:
 	brew install docker
 	brew cask install dockertoolbox
 
-###Vagrant/Puppet/Docker
-	brew install docker
-	brew cask install dockertoolbox
-    brew cask install vagrant
-    brew cask install vagrant-manager
-	brew cask install puppet
-
 ###Node/NPM/Grunt/Gulp/Bower
 	brew install node
 	brew install npm
