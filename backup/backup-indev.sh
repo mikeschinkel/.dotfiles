@@ -18,21 +18,9 @@ if [ -f "Indev.zip" ]; then
 	exit
 fi 
 
-mkdir Indev
-mkdir Indev/Library
-DIRS="Mail
-Mail/Indev
-Mail/V2
-Mail/V2/MailData
-Containers
-Containers/com.apple.mail
-Containers/com.apple.mail/Data
-Containers/com.apple.mail/Data/Library
-Containers/com.apple.mail/Data/Library/Preferences"
-for DIR in $DIRS; do
-	mkdir "Indev/Library/${DIR}" 2>/dev/null
-done
-
+mkdir -p Indev/Library/Mail/Indev 2>/dev/null
+mkdir -p Indev/Library/Mail/V2/MailData 2>/dev/null
+mkdir -p Indev/Library/Containers/com.apple.mail/Data/Library/Preferences 2>/dev/null
 
 DIR1="Library/Mail/Indev"
 FILES1="OutboxRules.plist
