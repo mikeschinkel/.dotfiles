@@ -1,7 +1,10 @@
 #!/bin/bash
 #
 
-echo "Updating Brew..."
+echo "Running .dotfiles/bash/040-brew.sh..."
+
+echo
+echo "   Updating Brew..."
 
 BREW_STATUS=$(brew update)
 
