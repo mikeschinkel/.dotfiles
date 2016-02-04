@@ -9,12 +9,12 @@ brew cask install sidestep
 
 echo "This assumes you have an Amazon EC2 instance running."
 echo "Create and Download a Key/Pair file: ForSideStep.pem."
-source ${UTILFILES}/pause.sh "Press any key when ready..."
+pause.sh "Press any key when ready..."
 
 open "https://console.aws.amazon.com/ec2/home#KeyPairs:sort=keyName"
 mv ~/Downloads/ForSideStep.pem ~/.ssh/
 chmod 400 ~/.ssh/ForSideStep.pem ~/.ssh/
 
-chmod +x ${UTILFILES}/new-export.sh
-${UTILFILES}/new-export.sh AWS_ACCESS_KEY "\$(jq -r .aws.sidestep.access_key \${CONFIGFILES}/secrets.json)"
-${UTILFILES}/new-export.sh AWS_SECRET_KEY "\$(jq -r .aws.sidestep.secret_key \${CONFIGFILES}/secrets.json)"
+chmod +x new-export.sh
+new-export.sh AWS_ACCESS_KEY "\$(get-secret.sh .aws.sidestep.access_key)"
+new-export.sh AWS_SECRET_KEY "\$(get-secret.sh .aws.sidestep.secret_key)"

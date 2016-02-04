@@ -6,5 +6,5 @@ brew cask install optimal-layout
 echo About to open Accessibility Settings
 echo Click [Lock] to enable changes, then
 echo Select [Checkbox] to give Optimal Layout access.
-source ./util/pause.sh "Press any key to open Accessibility Settings..."
+source pause.sh "Press any key to open Accessibility Settings..."
 open "/Users/mikeschinkel/Applications/Optimal Layout.app"

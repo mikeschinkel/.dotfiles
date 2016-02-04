@@ -12,9 +12,9 @@ if [ "$DIAGNOSIS" != "Your system is ready to brew." ]; then
 	echo "ERRORS FOUND!"
 	echo "-------------"
 	echo "${DIAGNOSIS}"
-	source ./util/pause.sh "Otherwise, press any key..."
+	pause.sh "Otherwise, press any key..."
 	exit
 fi	
 
-${UTILFILES}/new-export.sh HOMEBREW_GITHUB_API_TOKEN "\$(${GETSECRET} .github.homebrew.access_token)"
+new-export.sh HOMEBREW_GITHUB_API_TOKEN "\$(get-secret .github.homebrew.access_token)"
 

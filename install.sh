@@ -8,17 +8,17 @@ cd ~/.dotfiles
 
 echo "Running .dotfiles/install.sh..."
 
-for INSTALLER in ${INSTALLFILES}/*.sh; do
+export install_files="${DOTFILES_DIR}/install"
+
+for install_file in ${install_files}/*.sh; do
 
 	#remove filepath and .sh extension
-	BASENAME=$(basename -s .sh $INSTALLER)
+	basename=$(basename -s .sh $install_file)
 
-  	echo "Processing exports/${BASENAME}.sh file..";
-  	INSTALL_VAR=$(${UTILFILES}/to-upper.sh "${BASENAME}")
+  	echo "Processing ${basename} file..";
 
-  	INSTALL_FILE="${INSTALLFILES}/${BASENAME}.sh"
-  	chmod +x "${INSTALL_FILE}"
-  	source "${INSTALL_FILE}"
+  	chmod +x "${install_file}"
+  	source "${install_file}"
 
   	echo
 
