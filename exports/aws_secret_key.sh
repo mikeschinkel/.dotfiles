@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo "$(jq -r .aws.sidestep.secret_key ${CONFIGFILES}/secrets.json)"
+echo "$(get-secret.sh .aws.sidestep.secret_key)"

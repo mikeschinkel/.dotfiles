@@ -20,7 +20,7 @@ echo Installing Navicat Premium...
 sudo cp -r /Volumes/Navicat\ Premium/Navicat\ Premium.app ~/Applications
 
 echo Cleaning up...
-${UTILFILES}/detach-dmg.sh "Navicat Premium"
+detach-dmg.sh "Navicat Premium"
 
 rm Navicat\ Premium.cdr
 

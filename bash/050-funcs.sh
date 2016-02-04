@@ -1,6 +1,9 @@
 #!/bin/bash
 #
 
+echo "Running .dotfiles/bash/050-funcs.sh..."
+
+
 cd..() {
     cd ..
 }

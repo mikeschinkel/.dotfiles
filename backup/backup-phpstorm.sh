@@ -4,6 +4,10 @@
 #
 #		https://www.jetbrains.com/phpstorm/help/directories-used-by-phpstorm-to-store-settings-caches-plugins-and-logs.html
 #
+# Encrypt file as here:
+#
+#		https://kb.iu.edu/d/awio
+#
 
 
 save_dir=$(pwd)
@@ -16,8 +20,7 @@ app_dir="${home_dir}/Applications/PhpStorm.app/Contents/bin/"
 phpstorm_ver="100"
 #phpstorm_dirs="Preferences|Caches|Application Support"
 phpstorm_dirs="Preferences|Application Support"
-cur_dir=$(dirname $(pwd))
-backups_dir="${cur_dir}/backups"
+backups_dir="${DOTFILES_DIR}/settings"
 backup_dir="${backups_dir}/PhpStorm"
 
 # if [ -d "PhpStorm" ]; then 
@@ -65,6 +68,12 @@ backup_file="${backups_dir}/PhpStorm.${phpstorm_ver}.zip"
 echo "Zipping ${backup_file}..."
 cd "${backups_dir}"
 zip -r -q "${backup_file}" "PhpStorm"
+echo 
+
+echo "Encrypting ${backup_file}..."
+personal_email="$(personal-email.sh)"
+gpg -e -r "${personal_email}" "${backup_file}"
+rm "${backup_file}"
 echo 
 
 echo "Cleaning up."

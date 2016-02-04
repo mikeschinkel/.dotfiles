@@ -11,4 +11,4 @@ echo "  - Launch at Login:                Yes"
 echo "  - Require Option Key for Destroy: Yes"
 echo "  - ANYTHING ELSE YOU WANT"
 echo
-${UTILFILES}/pause.sh "Press any key after Preferences are set..."
+pause.sh "Press any key after Preferences are set..."
