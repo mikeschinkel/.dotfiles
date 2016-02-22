@@ -3,3 +3,4 @@
 repos/
 config/secrets.json
 zips/
+data/licenses.json
