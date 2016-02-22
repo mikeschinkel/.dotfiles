@@ -13,6 +13,6 @@ sudo installer -package "/Volumes/${PACKAGE}/JavaForOSX.pkg" -target /
 new-export.sh JAVA_HOME "\$(/usr/libexec/java_home)"
 
 echo Cleaning up...
-detach-dmg Java
+detach-dmg.sh Java
 
 rm javaforosx.dmg

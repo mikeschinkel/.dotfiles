@@ -2,7 +2,12 @@
 #
 #  Restore the PhpStorm files listed here from an PhpStorm.zip file:
 #
-#		http://support.indev.ca/kb/mao-advanced-techniques/manually-moving-act-on-files-to-a-new-computer
+#		https://www.jetbrains.com/phpstorm/help/directories-used-by-phpstorm-to-store-settings-caches-plugins-and-logs.html
+#		https://www.jetbrains.com/phpstorm/help/project-and-ide-settings.html
+#
+# Encrypt file as here:
+#
+#		https://kb.iu.edu/d/awio
 #
 
 save_dir=$(pwd)
@@ -19,9 +24,30 @@ save_dir=$(pwd)
 # 	exit;
 # fi 
 
-# cd ~/.dotfiles/zips
+settings_dir="${DOTFILES_DIR}/settings"
+cd $settings_dir
 
-# unzip -q -o PhpStorm.zip
+echo "Getting PhpStorm Version..."
+phpstorm_version=$(find . | grep gpg | grep PhpStorm | tr "." "\n" |sed -n 3p)
+echo "   Version is ${phpstorm_version}"
+echo
+
+gpg_file="PhpStorm.${phpstorm_version}.zip.gpg"
+echo "Unencrypting ${gpg_file}..."
+gpg "${gpg_file}"
+echo
+
+zip_file="PhpStorm.${phpstorm_version}.zip"
+echo "Unzipping ${zip_file} into PhpStorm/..."
+unzip -q -o "${zip_file}"
+echo 
+
+echo "Removing ${zip_file}..."
+rm "${zip_file}"
+echo
+
+ls -al
+ls -al PhpStorm
 
 # cd PhpStorm
 # this_dir=$(pwd)

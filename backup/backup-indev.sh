@@ -5,16 +5,16 @@
 #		http://support.indev.ca/kb/mao-advanced-techniques/manually-moving-act-on-files-to-a-new-computer
 #
 
-SAVE_DIR=$(pwd)
+save_dir=$(pwd)
 
 if [ -d "Indev" ]; then 
 	echo
-	echo "   FAIL: ${SAVE_DIR}/Indev exists. Cannot continue."
+	echo "   FAIL: ${save_dir}/Indev exists. Cannot continue."
 	exit
 fi 
 
 if [ -f "Indev.zip" ]; then 
-	echo "   FAIL: ${SAVE_DIR}/Indev.zip exists. Cannot continue."
+	echo "   FAIL: ${save_dir}/Indev.zip exists. Cannot continue."
 	exit
 fi 
 
@@ -46,7 +46,7 @@ for NUM in 1 2 3; do
 
 	for FILE in ${!FILESNAME}; do
 		FROM_FILE="${HOME}/${DIR}/${FILE}"
-		TO_FILE="${SAVE_DIR}/Indev/${DIR}/${FILE}"
+		TO_FILE="${save_dir}/Indev/${DIR}/${FILE}"
 		cp $FROM_FILE $TO_FILE 2>/dev/null
 	done
 
@@ -56,7 +56,7 @@ find Indev ! -name '.DS_Store' | zip -@ Indev.zip
 
 rm -Rf Indev
 
-cd "${SAVE_DIR}"
+cd "${save_dir}"
 
 
 

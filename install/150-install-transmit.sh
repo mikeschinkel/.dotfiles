@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-echo Installing SourceTree...
-brew cask install sourcetree
+echo Installing Transmit...
+brew cask install transmit
 

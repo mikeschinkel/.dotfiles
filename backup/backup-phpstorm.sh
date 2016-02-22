@@ -3,6 +3,7 @@
 #  Backup the PhpStorm files listed here into an PhpStorm.zip file:
 #
 #		https://www.jetbrains.com/phpstorm/help/directories-used-by-phpstorm-to-store-settings-caches-plugins-and-logs.html
+#		https://www.jetbrains.com/phpstorm/help/project-and-ide-settings.html
 #
 # Encrypt file as here:
 #
@@ -40,9 +41,9 @@ echo "Making directory ${backup_dir}..."
 mkdir -p "${backup_dir}"
 echo 
 
-echo "Saving PhpStorm version ${phpstorm_ver} to PHPSTORM_VERSION..."
+echo "Getting PhpStorm version..."
 phpstorm_ver_file="${backup_dir}/PHPSTORM_VERSION"
-echo "${phpstorm_ver}" > $phpstorm_ver_file
+echo "   Version: ${phpstorm_ver}"
 echo 
 
 echo "Saving idea.properties from ${app_dir}..."
@@ -70,10 +71,8 @@ cd "${backups_dir}"
 zip -r -q "${backup_file}" "PhpStorm"
 echo 
 
-echo "Encrypting ${backup_file}..."
-personal_email="$(personal-email.sh)"
-gpg -e -r "${personal_email}" "${backup_file}"
-rm "${backup_file}"
+encrypt-rm.sh "${backup_file}"
+
 echo 
 
 echo "Cleaning up."
