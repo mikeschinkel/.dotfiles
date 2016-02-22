@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# See: 
+# Note: Recommended by XWP as required for NewsCorp VPN 
 #
 
 save_dir=$(pwd)

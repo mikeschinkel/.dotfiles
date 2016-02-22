@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# See: 
+# Note: This is for NewsCorp, client of XWP
 # 
 #
 
