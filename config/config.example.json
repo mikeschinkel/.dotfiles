@@ -1,0 +1,10 @@
+{
+	"name": "George P. Burdell",
+	"apache":{
+		"domain": "local.georgiep.com"
+	},
+	"email": {
+		"work": "george.p.burdell@ibm.com",
+		"personal": "georgiep@gatech.edu"
+	}
+}
