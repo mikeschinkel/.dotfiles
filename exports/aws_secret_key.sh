@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo "$(get-secret.sh .aws.sidestep.secret_key)"
+echo "$(get-secret .aws.sidestep.secret_key)"

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo "$(get-secret.sh .github.homebrew.access_token)"
+echo "$(get-secret .github.homebrew.access_token)"
