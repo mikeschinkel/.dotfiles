@@ -10,9 +10,9 @@ echo Installing Java for OSX...
 PACKAGE=$(ls /Volumes | grep "Java")
 sudo installer -package "/Volumes/${PACKAGE}/JavaForOSX.pkg" -target /
 
-new-export.sh JAVA_HOME "\$(/usr/libexec/java_home)"
+new-export JAVA_HOME "\$(/usr/libexec/java_home)"
 
 echo Cleaning up...
-detach-dmg.sh Java
+detach-dmg Java
 
 rm javaforosx.dmg

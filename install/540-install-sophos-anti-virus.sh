@@ -25,11 +25,11 @@ echo
 
 echo "Running ${installername}..."
 echo "Loading Sophos Anti-Virus Installer UI."
-pause.sh "Press any key when ready..."
+pause "Press any key when ready..."
 open "${installername}"
 echo 
 
-pause.sh "Press any key for cleanup..."
+pause "Press any key for cleanup..."
 echo
 echo "Cleaning up..."
 cd ..

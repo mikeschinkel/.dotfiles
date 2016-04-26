@@ -9,4 +9,4 @@
 echo Installing GPG Tools...
 brew cask install gpgtools
 
-new-path.sh MacGPG2 "/usr/local/MacGPG2/bin"
+new-path MacGPG2 "/usr/local/MacGPG2/bin"

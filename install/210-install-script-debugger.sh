@@ -34,7 +34,7 @@ echo
 
 echo "Cleaning up..."
 echo
-detach-dmg.sh ScriptDebugger
+detach-dmg ScriptDebugger
 
 cd "${save_dir}"
 rm -Rf "/tmp/${dmg_file}"

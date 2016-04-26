@@ -17,7 +17,7 @@ echo
 
 echo "Ingore the OpenSSL library (0.9.8zc) warning."
 echo "Composer installed corrrectly despite the warning."
-pause.sh "Press any key to continue..."
+pause "Press any key to continue..."
 echo 
 
 echo Moving Composer to /usr/local/bin/...
@@ -27,5 +27,5 @@ echo
 
 echo "Composer moved."
 echo "Next, running Composer to test its install."
-pause.sh "Press any key to continue..."
+pause "Press any key to continue..."
 composer

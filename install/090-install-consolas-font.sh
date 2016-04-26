@@ -14,5 +14,5 @@ cabextract PowerPointViewer.exe
 cabextract ppviewer.cab
 
 echo Click [INSTALL] in Font Book to install Consolas font.
-source pause.sh "Press any key to open Font Book..."
+source pause "Press any key to open Font Book..."
 open CONSOLA*.TTF  

@@ -19,8 +19,13 @@ hdiutil attach -quiet -noautoopen Navicat\ Premium.cdr
 echo Installing Navicat Premium...
 sudo cp -r /Volumes/Navicat\ Premium/Navicat\ Premium.app ~/Applications
 
+echo Configuring Custom Keymaps...
+addkeymap "Navicat Premium" "Beautify SQL" "@b"
+addkeymap "Navicat Premium" "Beautify SQL With..." "@~b"        
+
 echo Cleaning up...
-detach-dmg.sh "Navicat Premium"
+detach-dmg "Navicat Premium"
+
 
 rm Navicat\ Premium.cdr
 

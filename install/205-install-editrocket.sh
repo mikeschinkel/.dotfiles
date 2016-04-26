@@ -26,7 +26,7 @@ echo
 
 echo "Cleaning up..."
 echo
-detach-dmg.sh EditRocket
+detach-dmg EditRocket
 
 cd "${save_dir}"
 rm -Rf "/tmp/${dmg_file}"

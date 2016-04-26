@@ -10,7 +10,7 @@ echo Installing Remotix...
 cp -r /Volumes/Remotix/Remotix.app /Volumes/Remotix/Applications
 
 echo Cleaning up...
-detach-dmg.sh Remotix
+detach-dmg Remotix
 
 rm Remotix.dmg
 

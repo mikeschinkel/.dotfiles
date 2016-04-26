@@ -33,7 +33,7 @@ networksetup -setnetworkserviceenabled "Display Ethernet" on
 echo 
 
 echo Cleaning up...
-detach-dmg.sh "Mac_MF_Ver1051_00"
+detach-dmg "Mac_MF_Ver1051_00"
 
 rm Mac_MF_Ver1051_00.dmg
 echo

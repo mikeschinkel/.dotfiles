@@ -6,4 +6,4 @@
 echo Installing LastPass...
 brew cask install lastpass
 open "/opt/homebrew-cask/Caskroom/lastpass/latest/LastPass Installer.app"
-pause.sh "Press any key AFTER setting up LastPass..."
+pause "Press any key AFTER setting up LastPass..."

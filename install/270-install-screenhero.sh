@@ -10,7 +10,7 @@ echo Installing ScreenHero...
 cp -r /Volumes/Screenhero/Screenhero.app ~/Applications
 
 echo Cleaning up...
-detach-dmg.sh Screenhero
+detach-dmg Screenhero
 
 rm Screenhero.dmg
 

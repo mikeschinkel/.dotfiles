@@ -14,9 +14,9 @@ brew tap homebrew/dupes
 brew tap homebrew/versions
 brew tap homebrew/homebrew-php
 
-switch-php.sh "5.3" "unlink"
-switch-php.sh "5.4" "unlink"
-switch-php.sh "5.5" "unlink"
-switch-php.sh "5.6" "unlink"
-switch-php.sh "7.0"
+switch-php "5.3" "unlink"
+switch-php "5.4" "unlink"
+switch-php "5.5" "unlink"
+switch-php "5.6" "unlink"
+switch-php "7.0"
 

@@ -8,7 +8,7 @@ hdiutil attach MailTags4Current.dmg
 
 echo Running MailTags Installer...
 open "/Volumes/Install MailTags 4/Install MailTags 4.app"
-pause.sh "Press any key AFTER you have installed Mail Tags..."
+pause "Press any key AFTER you have installed Mail Tags..."
 
 if [ -f ~/Library/Mail/Indev/MailTags4Data.db ]; then
 	echo "Fixing ability to find MailTags Library..."
@@ -17,7 +17,7 @@ if [ -f ~/Library/Mail/Indev/MailTags4Data.db ]; then
 fi
 
 echo Cleaning up...
-detach-dmg.sh "Install MailTags"
+detach-dmg "Install MailTags"
 
 rm MailTags4Current.dmg
 
