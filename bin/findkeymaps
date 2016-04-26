@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#
+# See: http://hints.macworld.com/article.php?story=20131123074223584
+# See: http://best-mac-tips.com/2012/08/29/remapping-os-x-application-keyboard-shortcuts/
+# See: http://www.scriptscoop.net/t/d411617abcda/how-can-i-migrate-all-keyboard-shortcuts-from-one-mac-to-another.html
+# See: http://osxnotes.net/keybindings.html
+#
+# For use with addkeymap
+#
+
+echo
+defaults find NSUserKeyEquivalents
+
+

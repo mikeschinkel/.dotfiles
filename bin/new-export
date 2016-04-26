@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+EXPORT_FILE=$(to-lower "$1")
+new-script exports/${EXPORT_FILE} "echo \"$2\""
+export-var ${EXPORT_FILE}

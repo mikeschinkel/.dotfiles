@@ -2,7 +2,7 @@
 
 echo "Encrypting $1..."
 
-personal_email="$(personal-email.sh)"
+personal_email="$(personal-email)"
 
 gpg -e -r "${personal_email}" "$1"
 
