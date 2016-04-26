@@ -1,6 +1,11 @@
 .DS_Store
 .idea/
 repos/
+config/config.json
 config/secrets.json
 zips/
+data/AppShelf.db
 data/licenses.json
+licenses/HTTPScoop.lic
+php/expect-pear
+purchased
