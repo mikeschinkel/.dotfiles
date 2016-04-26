@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 dir=$(pwd)
 cd /tmp
 curl -O http://pear.php.net/go-pear.phar
