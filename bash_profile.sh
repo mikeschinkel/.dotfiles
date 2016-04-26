@@ -9,6 +9,5 @@ for FILE in bash/*.sh; do
 	source "${FILE}"
 
 done
-echo
 echo "Bash initialization complete."
 
