@@ -71,7 +71,7 @@ cd "${backups_dir}"
 zip -r -q "${backup_file}" "PhpStorm"
 echo 
 
-encrypt-rm.sh "${backup_file}"
+encrypt-file-rm "${backup_file}"
 
 echo 
 
