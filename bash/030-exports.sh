@@ -15,13 +15,15 @@ for export_file in ${export_files}/*.sh; do
 	basename=$(basename -s .sh $export_file)
 
   	#echo "Processing exports/${basename}.sh file..";
-  	export_var=$(to-upper.sh "${basename}")
+  	export_var=$(to-upper "${basename}")
 
   	chmod +x ${export_files}/${basename}.sh
   	export_file="${export_files}/${basename}.sh"
+
+  	#echo "Running ${export_file}.."
   	export_value=$(${export_file})
 
-  	echo "  Exporting ${export_var}=${export_value}"
+  	echo "  Exporting ${export_var}..."
   	export $export_var="${export_value}"
 
 done    
