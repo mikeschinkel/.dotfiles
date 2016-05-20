@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+#
+
+echo
+savedir=$(pwd)
+
+echo "Preparing ~/.dotfiles for git comment then push..."
+cd ~/.dotfiles
+echo
+
+echo "Encrypting data/licenses.json..."
+cd data
+encrypt-file licenses.json
+cd ..
+echo
+
+echo "Encrypting config/*.json..."
+cd secrets
+encrypt-file secrets.json
+encrypt-file config.json
+cd ..
+echo
+
+echo "Staging all files..."
+git add .
+
+echo "Committing Staged Files..."
+git commit -m "Lastest Commit"
+
+echo "Pulling down any remotely updated files..."
+git pull --rebase
+
+echo "Committing Merged Files..."
+git commit -m "Lastest Merge"
+
+echo "Pushing updated repo..."
+git pull --rebase
+
+cd "${savedir}"
+

@@ -10,4 +10,3 @@ for FILE in bash/*.sh; do
 
 done
 echo "Bash initialization complete."
-

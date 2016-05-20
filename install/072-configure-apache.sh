@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 #
 
-clear
 echo Configuring Apache...
 sudo apachectl stop 2>/dev/null
 
@@ -9,8 +8,9 @@ mkdir -p ~/Apache
 mkdir -p ~/Apache/www
 mkdir -p ~/Apache/logs
 
-echo "index.php is here!" > ~/Apache/www/index.php
 echo "index.html is here!" > ~/Apache/www/index.html
+echo "<?php" > ~/Apache/www/index.php
+echo 'echo "index.php is here!";' >> ~/Apache/www/index.php
 
 
 current_user=$(whoami)
