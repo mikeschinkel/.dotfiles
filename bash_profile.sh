@@ -2,11 +2,22 @@
 #
 echo "Running .dotfiles/bash_profile.sh..."
 
-export DOTFILES_DIR=$(dirname "${BASH_SOURCE}")
+cd ~/.dotfiles/
+export DOTFILES_DIR=$(pwd)
 
-for FILE in bash/*.sh; do
+for bash_file in bash/*.sh; do
 
-	source "${FILE}"
+	source "${bash_file}"
 
 done
+cd ~/
 echo "Bash initialization complete."
+
+#
+# Display Menu 
+#
+ln -sf ~/.dotfiles/menu.sh /usr/local/bin/m
+m
+
+
+

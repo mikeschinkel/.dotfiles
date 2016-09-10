@@ -16,6 +16,9 @@ if [ -f ~/Library/Mail/Indev/MailTags4Data.db ]; then
 	mv ~/Library/Mail/Indev/MailTags4Data.db ~/Library/Mail/Indev/MailTags4Data.db.bak
 fi
 
+
+ln -s "/Users/mikeschinkel/Library/Application Support/Indev/MailTagsHelper.app" "/Applications/MailTagsHelper.app"
+
 echo Cleaning up...
 detach-dmg "Install MailTags"
 

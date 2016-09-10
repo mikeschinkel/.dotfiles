@@ -24,6 +24,7 @@ add_path "/usr/local/bin"
 add_path "/usr/local/sbin"
 add_path "/opt/local/bin"
 add_path "/opt/local/sbin"
+add_path "/opt/wplib"
 
 path_scripts="${DOTFILES_DIR}/paths/*.sh"
 

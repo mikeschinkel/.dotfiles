@@ -10,4 +10,4 @@ echo
 echo "   Symlinking airport"
 ln -sf /System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport /usr/local/bin/airport
 
-
+echo -e ""

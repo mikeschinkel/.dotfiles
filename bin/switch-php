@@ -55,18 +55,24 @@ fi
 if [ ! -f "${phpbin_file}" ]; then
 	echo "Brew installing PHP ${dot_version}..."
 	brew install "${version_slug}"
-	echo
-fi
-
-if [ ! -f "${zend_extension}" ]; then
-	echo "Brew installing XDEBUG for PHP ${dot_version}..."
-	brew install "${version_slug}-xdebug"
+	brew upgrade "${version_slug}"
 	echo
 fi
 
 echo "Brew linking installed PHP ${dot_version}..."
 echo
 brew link "${version_slug}" 2>/dev/null
+echo 
+
+if [ ! -f "${zend_extension}" ]; then
+	echo "Brew installing XDEBUG for PHP ${dot_version}..."
+	brew install "${version_slug}-xdebug"
+	brew upgrade "${version_slug}-xdebug"
+	echo
+fi
+
+echo "Brew linking installed PHP ${dot_version}'s XDEBUG..."
+echo
 brew link "${version_slug}-xdebug" 2>/dev/null
 echo 
 

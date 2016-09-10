@@ -10,31 +10,53 @@ echo
 
 echo "Encrypting data/licenses.json..."
 cd data
+if [ -f "licenses.json.gpg" ] ; then
+    rm licenses.json.gpg
+fi
 encrypt-file licenses.json
 cd ..
 echo
 
 echo "Encrypting config/*.json..."
-cd secrets
+cd config
+if [ -f "secrets.json.gpg" ] ; then
+    rm secrets.json.gpg
+fi
+if [ -f "config.json.gpg" ] ; then
+    rm config.json.gpg
+fi
 encrypt-file secrets.json
 encrypt-file config.json
 cd ..
 echo
 
+echo "Show Git Status (for good measure...)"
+git status
+echo
+
 echo "Staging all files..."
 git add .
+echo
+
+echo "Show Git Status, again"
+git status
+echo
 
 echo "Committing Staged Files..."
 git commit -m "Lastest Commit"
+echo
 
 echo "Pulling down any remotely updated files..."
 git pull --rebase
+echo
 
 echo "Committing Merged Files..."
 git commit -m "Lastest Merge"
+echo
 
 echo "Pushing updated repo..."
-git pull --rebase
+git push
+echo
 
 cd "${savedir}"
 

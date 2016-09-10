@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo Installing Bash Completions...
+brew install git bash-completion

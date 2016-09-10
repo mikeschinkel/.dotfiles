@@ -4,7 +4,7 @@
 # See: 
 #
 
-echo "Running .dotfiles/bash/045-other.sh..."
+echo "Running .dotfiles/bash/045-ruby.sh..."
 
 echo
 #echo "Sourcing chruby..."

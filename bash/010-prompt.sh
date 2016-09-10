@@ -53,16 +53,7 @@ function dev_prompt {
 
   dir="${bold}${cyan}${dir} \n"
 
-  httpd="${purple}apache[${reset}${cyan}"
-  running=$(ps ax | grep -v grep | grep httpd)
-  if  [ "${running}" == "" ]; then
-      httpd="${httpd}off"
-  else
-      httpd="${httpd}ON"
-  fi
-  httpd="${httpd}${reset}${purple}]${reset}"
-
-  PS1="\n${httpd}\n$dir$reset${green}\$$reset "
+  PS1="\n$dir$reset${green}\$$reset "
   if [ $git -ne 0 ]; then
     git="$bold${orange}GIT${reset}: $repo, $branch,"
     PS1="\n${git} ${PS1}"
@@ -71,3 +62,14 @@ function dev_prompt {
 }
 
 PROMPT_COMMAND=dev_prompt
+
+
+  # httpd="${purple}apache[${reset}${cyan}"
+  # running=$(ps ax | grep -v grep | grep httpd)
+  # if  [ "${running}" == "" ]; then
+  #     httpd="${httpd}off"
+  # else
+  #     httpd="${httpd}ON"
+  # fi
+  # httpd="${httpd}${reset}${purple}]${reset}"
+
