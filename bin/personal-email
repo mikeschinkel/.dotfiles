@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-get-config ".email.personal"
+load-config ".email.personal"

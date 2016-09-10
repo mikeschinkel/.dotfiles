@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 #
+echo DO NOT INSTALL Apache
+exit
 
 echo Configuring Apache...
 sudo apachectl stop 2>/dev/null
@@ -16,7 +18,7 @@ echo 'echo "index.php is here!";' >> ~/Apache/www/index.php
 current_user=$(whoami)
 email_address=$(personal-email)
 httpd_conf="/private/etc/apache2/httpd.conf"
-apache_domain=$(get-config .apache.domain)
+apache_domain=$(load-config .apache.domain)
 
 sudo sed -i.bak "s/User _www/User ${current_user}/" "${httpd_conf}"
 sudo sed -i.bak "s/Group _www/Group everyone/" "${httpd_conf}"

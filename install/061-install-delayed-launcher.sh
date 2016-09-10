@@ -3,6 +3,9 @@
 #
 # https://www.taoeffect.com/blog/2010/03/delayedlauncher-2-0/
 #
+echo DO NOT INSTALL THIS
+exit
+
 
 echo "Installing DelayedLauncher..."
 save_dir=$(pwd)
