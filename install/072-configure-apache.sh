@@ -18,7 +18,7 @@ echo 'echo "index.php is here!";' >> ~/Apache/www/index.php
 current_user=$(whoami)
 email_address=$(personal-email)
 httpd_conf="/private/etc/apache2/httpd.conf"
-apache_domain=$(load-config .apache.domain)
+apache_domain=$(config .apache.domain)
 
 sudo sed -i.bak "s/User _www/User ${current_user}/" "${httpd_conf}"
 sudo sed -i.bak "s/Group _www/Group everyone/" "${httpd_conf}"

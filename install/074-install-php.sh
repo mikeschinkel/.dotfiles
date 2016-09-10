@@ -5,6 +5,8 @@
 # See: 
 #		https://getgrav.org/blog/mac-os-x-apache-setup-multiple-php-versions
 #
+exit DO NOT INSTALL PHP
+exit
 
 clear
 echo Installing PHP...
