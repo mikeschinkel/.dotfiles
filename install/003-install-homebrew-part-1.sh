@@ -16,5 +16,4 @@ if [ "$DIAGNOSIS" != "Your system is ready to brew." ]; then
 	exit
 fi	
 
-new-export HOMEBREW_GITHUB_API_TOKEN "\$(get-secret .github.homebrew.access_token)"
 
