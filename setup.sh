@@ -4,14 +4,15 @@
 #
 # Eventually it will be almost fully complete.
 
-echo NOT FULLY TESTED
-exit
+#echo NOT FULLY TESTED
+#exit
 cd ~/.dotfiles
 
 for FILE in setup/*.sh; do
-
+	
 	sudo chmod +x "${FILE}"
 	source "${FILE}"
+	cd ~/.dotfiles
 
 done
 
