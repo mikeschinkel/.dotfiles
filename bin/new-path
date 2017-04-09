@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-PATH_SLUG=$(to-lower.sh "$1")
+PATH_SLUG=$(to-lower "$1")
 new-script paths/${PATH_SLUG} "echo \"$2\""
-chmod +x "${PATHFILES}/$1.sh"
-PATH="${PATH_VALUE}:${PATH}"
+PATH_FILE="${DOTFILES_DIR}/paths/${PATH_SLUG}.sh"
+chmod +x "${PATH_FILE}"
+PATH_VALUE=$(bash $PATH_FILE)
+export PATH="${PATH_VALUE}:${PATH}"
 echo "  PATH ADDED: $2"
 echo
