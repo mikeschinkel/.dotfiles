@@ -11,10 +11,7 @@ git clone git@bitbucket.org:mikeschinkel/private.git
 mkdir -p private
 
 cd private
-cp config/*    ../config
-cp data/*      ../data
-cp licenses/*  ../licenses
-cp -R purchased ../purchased
+bash copy-files.sh
 
 cd "${DOTFILES_DIR}/"
 
