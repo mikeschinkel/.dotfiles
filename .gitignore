@@ -8,4 +8,5 @@ data/AppShelf.db
 data/licenses.json
 licenses/HTTPScoop.lic
 php/expect-pear
-purchased
+purchased/
+private/

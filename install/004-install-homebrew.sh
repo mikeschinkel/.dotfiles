@@ -4,6 +4,11 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 
 echo Updating HomeBrew...
 brew update
+echo 
+
+echo "Exporting HOMEBREW_GITHUB_API_TOKEN..."
+new-export HOMEBREW_GITHUB_API_TOKEN "\$(get-secret .github.homebrew.access_token)"
+echo 
 
 echo Running Brew Doctor...
 DIAGNOSIS=$(brew doctor)
@@ -12,8 +17,8 @@ if [ "$DIAGNOSIS" != "Your system is ready to brew." ]; then
 	echo "ERRORS FOUND!"
 	echo "-------------"
 	echo "${DIAGNOSIS}"
-	pause "Otherwise, press any key..."
-	exit
+	pause "Press any key..."
 fi	
+
 
 
