@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 echo Installing VirtualBox...
-brew install virtualbox
+brew cask install virtualbox
 

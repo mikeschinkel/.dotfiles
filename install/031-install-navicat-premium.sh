@@ -29,3 +29,6 @@ detach-dmg "Navicat Premium"
 
 rm Navicat\ Premium.cdr
 
+
+echo "FIGURE OUT HOW TO GET License scripted"
+pause
