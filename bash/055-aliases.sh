@@ -19,6 +19,11 @@ alias m=". m"
 alias rmm="ssh mikeschinkel@mac-mini.local 'sudo reboot'"
 
 #
+# Quick to Box CLI dir
+# 
+alias cdbc="cd /usr/local/bin/boxcli"
+
+#
 # Vagrant
 #
 alias vs="vagrant status"
