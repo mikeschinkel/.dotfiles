@@ -307,3 +307,15 @@ function find_grep() {
     sudo find . | grep -i "$1"
 }
 
+function perms() {
+    local path
+    if [ 1 == $# ] ; then
+        path="$1"
+        path="${path%/}/"
+    else            
+        path=''
+    fi
+    # See https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/stat.1.html
+    stat -f '%5A%t%SA%t%N' "${path}"*
+}
+
