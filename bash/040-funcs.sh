@@ -3,6 +3,13 @@
 
 echo "Running .dotfiles/bash/050-funcs.sh..."
 
+isEcho() {
+    if [[ "1" == "$#" && '--echo' == "$1" ]] ; then 
+        return 0 
+    fi
+    return 1
+}
+
 mcd() {
     mkdir "$1"
     cd "$1"

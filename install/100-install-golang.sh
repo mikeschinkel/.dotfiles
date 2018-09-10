@@ -4,10 +4,10 @@ echo "Installing Go Language..."
 brew install golang
 
 chmod +x "${DOTFILES_DIR}/bin/new-export"
-new-export "GOPATH" "${HOME}/GoLang"
+new-export "GOPATH" "${HOME}/go"
 new-export "GOROOT" "/usr/local/opt/go/libexec"
 
-GOPATH="${HOME}/GoLang"
+GOPATH="${HOME}/go"
 GOROOT="/usr/local/opt/go/libexec"
 
 chmod +x "${DOTFILES_DIR}/bin/new-path"

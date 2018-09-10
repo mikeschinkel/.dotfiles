@@ -35,15 +35,11 @@ else
 		choice=$(( $choice-87 ))
 	fi
 	if [ $choice -ne 0 ]; then
-		cd "${sites_root}/${site_domains[choice]}"
+		new_dir="${sites_root}/${site_domains[choice]}"
+		cd "${new_dir}"
 		clear
 	fi
 fi
 
-# echo "${START_DIR}"
-# if [ "" != "${START_DIR}" ]; then
-# 	cd "${START_DIR}"
-# 	clear
-# fi
 
 

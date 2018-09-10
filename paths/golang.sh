@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo "/Users/mschinkel/GoLang/bin"
+echo "/Users/mschinkel/go/bin"

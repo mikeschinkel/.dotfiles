@@ -1,0 +1,6 @@
+#!/usr/bin/expect
+
+spawn php -d detect_unicode=0 /tmp/go-pear.phar
+expect "1-12, 'all' or Enter to continue:"
+send "\r"
+expect eof

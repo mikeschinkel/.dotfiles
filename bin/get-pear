@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+curl http://pear.php.net/go-pear.phar -o /tmp/go-pear.phar
+rm -rf "${HOME}/pear"
+install-pear
+rm -rf /tmp/pear
+rm /tmp/go-pear.phar
+del-path pear "${HOME}/pear/bin"
+new-path pear "${HOME}/pear/bin"
+echo IMPORTANT: You must restart terminal before pear will be available

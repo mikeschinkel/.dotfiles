@@ -10,121 +10,111 @@
 # Note: xdebug.remote_port MUST BE 9001 as FPM uses 9000
 #
 
-echo 
+if [[ "" == "$1" || "$1" != *.* ]] ; then
+    echo "Please specific a PHP version; e.g. 5.6, 7.1, 7.2, etc."
+    exit
+fi
+
 echo "Switching PHP to version $1..."
-echo 
 
-echo "Parsing major and minor versions from [$1]..."
-echo 
-
+#echo "Parsing major and minor versions from [$1]..."
 major_version=$(echo "$1" | cut -f1 -d".")
 minor_version=$(echo "$1" | cut -f2 -d".")
 unlink="$2"
 
-version_slug="php${major_version}${minor_version}"
+version_slug="php@${major_version}.${minor_version}"
 dot_version="${major_version}.${minor_version}"
 
+echo
 echo "     Major: ${major_version}"
 echo "     Minor: ${minor_version}"
 echo "   Version: ${dot_version}"
 echo "      Slug: ${version_slug}"
 echo 
 
-phpini_dir="/usr/local/etc/php/${dot_version}/"
-phpconf_dir="/usr/local/etc/php/${version_slug}/conf.d"
-php_dir="/usr/local/opt/${version_slug}"
-phpbin_file="/usr/local/opt/${version_slug}/bin/php"
+phpini_dir="/usr/local/etc/php/${dot_version}"
+phpini_file="${phpini_dir}/php.ini"
+phpconf_dir="/usr/local/etc/php/${dot_version}/conf.d"
+php_dir="/usr/local/opt/${dot_version}"
+phpbin_file="/usr/local/opt/${dot_version}/bin/php"
 xdebug_file="${phpconf_dir}/ext-xdebug.ini"
-zend_extension="${php_dir}-xdebug/xdebug.so" 
+zend_extension="${DOTFILES_DIR}/php/xdebug/${dot_version}/xdebug.so"
 
-echo "  Ini File: ${phpini_dir}"
+echo "  Ini File: ${phpini_file}"
 echo "   PHP bin: ${phpbin_file}"
 echo "  Zend Ext: ${zend_extension}"
-echo 
+echo
 
-installed=$(php -v | head -n 1 | cut -f2  -d" " | cut -f1 -f2 -d".")
+installed=$(php -v | head -n 1 | cut -f2  -d" " | cut -f1 -f2 -d"." 2>/dev/null)
 if [ "" != "${installed}" ]; then
 	echo "Unlinking Brew installed PHP and XDEBUG version ${installed}..."
-	echo 
 	installed_slug="php${installed//.}"
-	brew unlink "${installed_slug}" 2>/dev/null
-	brew unlink "${installed_slug}-xdebug" 2>/dev/null
-	echo
+	brew unlink "${installed_slug}" >/dev/null 2>&1
+	brew unlink "${installed_slug}-xdebug" >/dev/null 2>&1
 fi
 
 if [ ! -f "${phpbin_file}" ]; then
 	echo "Brew installing PHP ${dot_version}..."
-	brew install "${version_slug}"
-	brew upgrade "${version_slug}"
-	echo
+	brew install "${version_slug}" >/dev/null 2>&1
+	brew upgrade "${version_slug}" >/dev/null 2>&1
 fi
 
 echo "Brew linking installed PHP ${dot_version}..."
-echo
-brew link "${version_slug}" 2>/dev/null
-echo 
+brew link "${version_slug}" --force >/dev/null 2>&1
 
+echo "Adding new paths for PHP ${dot_version}..."
+PHP_BIN_PATH="/usr/local/opt/${version_slug}/bin"
+PHP_SBIN_PATH="/usr/local/opt/${version_slug}/sbin"
+del-path php  >/dev/null 2>&1
+new-path php "${PHP_BIN_PATH}:${PHP_SBIN_PATH}"  >/dev/null 2>&1
 if [ ! -f "${zend_extension}" ]; then
-	echo "Brew installing XDEBUG for PHP ${dot_version}..."
-	brew install "${version_slug}-xdebug"
-	brew upgrade "${version_slug}-xdebug"
-	echo
+    if [ "" == "$(which pecl)" ]; then
+        get-pear  >/dev/null 2>&1
+    fi
+	echo "PECL installing XDEBUG for PHP ${dot_version}..."
+	# See https://github.com/Homebrew/homebrew-core/issues/26108#issuecomment-378234780
+	pecl uninstall xdebug >/dev/null 2>&1
+	pecl install xdebug  >/dev/null 2>&1
 fi
 
-echo "Brew linking installed PHP ${dot_version}'s XDEBUG..."
-echo
-brew link "${version_slug}-xdebug" 2>/dev/null
-echo 
-
-echo "Making directory ${phpconf_dir}..."
+#echo "Making directory ${phpconf_dir}..."
 mkdir -p "${phpconf_dir}"
-echo 
 
 if [ -f "${xdebug_file}" ]; then
-	echo "Deleting existing ${xdebug_file}..."
-	sudo rm "${xdebug_file}"
-	echo
+	#echo "Deleting existing ${xdebug_file}..."
+	rm "${xdebug_file}"
 fi
 
-
 echo "Creating ${xdebug_file}..."
-sudo echo zend_extension="${zend_extension}" > ${xdebug_file}
-echo
+echo zend_extension="${zend_extension}" > ${xdebug_file}
 
-echo "Adding directives to ${xdebug_file}..."
-sudo echo xdebug.remote_enable=1			>> ${xdebug_file}
-sudo echo xdebug.remote_host="localhost"	>> ${xdebug_file}
-sudo echo xdebug.remote_port=9001			>> ${xdebug_file}
-sudo echo xdebug.idekey="PHPSTORM"			>> ${xdebug_file}
-sudo echo xdebug.remote_connect_back=1		>> ${xdebug_file}
-sudo echo xdebug.remote_autostart=1			>> ${xdebug_file}
-sudo echo xdebug.remote_handler=dbgp		>> ${xdebug_file}
-echo 
+#echo "Adding directives to ${xdebug_file}..."
+echo xdebug.remote_enable=1			>> ${xdebug_file}
+echo xdebug.remote_host="localhost"	>> ${xdebug_file}
+echo xdebug.remote_port=9001			>> ${xdebug_file}
+echo xdebug.idekey="PHPSTORM"			>> ${xdebug_file}
+echo xdebug.remote_connect_back=1		>> ${xdebug_file}
+echo xdebug.remote_autostart=1			>> ${xdebug_file}
+echo xdebug.remote_handler=dbgp		>> ${xdebug_file}
 
-echo "Displaying ${xdebug_file}..."
-echo 
-cat "${xdebug_file}"
-echo
+#echo "Get rid of default xdebug configuration"
+sed -i '' '/zend_extension="xdebug.so"/d' "${phpini_file}"
 
 if [ "unlink" == "${unlink}" ]; then
 	echo "Brew unlinking PHP and XDEBUG for version ${dot_version}..."
-	brew unlink "${version_slug}-xdebug"
-	brew unlink "${version_slug}"
+	brew unlink "${version_slug}-xdebug" >/dev/null 2>&1
+	brew unlink "${version_slug}" >/dev/null 2>&1
 else	
 	echo "Symlinking PHP ${dot_version} for Mac OS X launch agents..."
-	echo
 	plist_file="homebrew.mxcl.${version_slug}.plist"
 	launchagents_dir="${HOME}/Library/LaunchAgents"
 
-	echo "Symlinking ${plist_file} to ~/Library/LaunchAgents/..."
-	echo
-	ln -sfv "${php_dir}/${plist_file}" "${launchagents_dir}"
-	echo
+	#echo "Symlinking ${plist_file} to ~/Library/LaunchAgents/..."
+	ln -sfv "${php_dir}/${plist_file}" "${launchagents_dir}" >/dev/null 2>&1
 
-	echo "Adding ${plist_file} to ~/Library/LaunchAgents/..."
-	launchctl load "${launchagents_dir}/${plist_file}"
+	#echo "Adding ${plist_file} to ~/Library/LaunchAgents/..."
+	launchctl load "${launchagents_dir}/${plist_file}" >/dev/null 2>&1
+
 fi
-echo 
-
+echo "IMPORTANT: You need to restart your terminal session for this to take effect."
 echo "Done."
-echo 

@@ -1,0 +1,7 @@
+#!/usr/bin/expect
+spawn printenv
+expect eof
+spawn bash del-path pear
+expect eof
+spawn bash new-path pear "/Users/mschinkel/pear/bin"
+expect eof

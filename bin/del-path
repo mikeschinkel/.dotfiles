@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+PATH_SLUG=$(to-lower "$1")
+echo
+echo "Deleting path ${PATH_SLUG}..."
+PATH_SCRIPT="${DOTFILES_DIR}/paths/${PATH_SLUG}.sh"
+if [ -f "${PATH_SCRIPT}" ]; then
+    rm "${PATH_SCRIPT}"
+    echo "  PATH DELETED: ${PATH_SCRIPT}"
+    echo
+fi
