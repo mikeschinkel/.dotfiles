@@ -67,15 +67,15 @@ function dev_prompt {
         local hash="$(git log -1 --oneline --no-color|awk '{print $1}' 2>&1)"
         local tag="$(git describe --exact-match "${hash}" 2>&1)"
 
-        if ! [[ "" == "${tag}" || "${tag}" =~ ^fatal ]]; then
+        if [[ "" != "${branch}" || "(HEAD" != "${branch:0:5}" ]]; then
+            git="${git}${br}branch${reset}=${bg}${branch}${r}"
+        elif ! [[ "" == "${tag}" || "${tag}" =~ ^fatal ]]; then
             git="${br}tag${r}=${bg}${tag}${r} (detached)"
         elif [ "(HEAD detached at" == "${branch:0:17}" ]; then
             if [ "" != "${git}" ]; then
                 git=", ${git}"
             fi
             git="${br}HEAD${reset}=${bg}${hash}${r} (detached)${git}"
-        elif [ "" != "${branch}" ] ; then
-            git="${git}${br}branch${reset}=${bg}${branch}${r}"
         else
             git=""
         fi
