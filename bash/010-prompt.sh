@@ -97,16 +97,12 @@ function dev_prompt {
         fi
 
         if [ "" != "${git}" ]; then
-            git="${bb}GIT:${r}     ${git}"
+            git="${bb}GIT:${r}     ${git}\n"
         fi
 
         popd > /dev/null
 
     fi
-
-    dir="${bc}${dir} \n"
-
-    PS1="\n${git}${dir}${reset}${green}\$${reset} "
 
     json="$(_get_project_json)"
     if [ "" == "${json}" ]; then
@@ -120,12 +116,12 @@ function dev_prompt {
     fi
 
     if [[ "" != "${project}" && "" != "${git}" ]]; then
-        project="\n${project}"
+        project="${project}\n"
     fi
 
-    dir="${bc}${dir}"
+    dir="${bc}${dir}\n"
 
-    PS1="\n${by}WPLib Box${bg}!${r}\n${git}${project}\n${dir} \n${reset}${green}\$${reset} "
+    PS1="\n${git}${project}${dir}${reset}${green}\$${reset} "
 
 }
 
