@@ -52,6 +52,8 @@ function dev_prompt {
     local r="${reset}"
     local git=""
     local dir
+    local detatched="${git}${br}branch${reset}=${bg}(detached)${r}"
+    local remote extra repo
 
     if [ "$PWD" == "/" ]; then
         dir="/"
@@ -67,33 +69,40 @@ function dev_prompt {
         local hash="$(git log -1 --oneline --no-color|awk '{print $1}' 2>&1)"
         local tag="$(git describe --exact-match "${hash}" 2>&1)"
 
-        if [[ "" != "${branch}" || "(HEAD" != "${branch:0:5}" ]]; then
+        if [[ "" != "${branch}" && "(HEAD" != "${branch:0:5}" ]]; then
             git="${git}${br}branch${reset}=${bg}${branch}${r}"
         elif ! [[ "" == "${tag}" || "${tag}" =~ ^fatal ]]; then
-            git="${br}tag${r}=${bg}${tag}${r} (detached)"
+            git="${br}tag${r}=${bg}${tag}${r}"
+            branch="${detatched}"
         elif [ "(HEAD detached at" == "${branch:0:17}" ]; then
-            if [ "" != "${git}" ]; then
-                git=", ${git}"
-            fi
-            git="${br}HEAD${reset}=${bg}${hash}${r} (detached)${git}"
+            git="${br}HEAD${reset}=${bg}${hash}${r}"
+            branch="${detatched}"
         else
             git=""
         fi
 
-        local remote="$(git config --get "branch.${branch}.remote")"
+        if [ "${branch}" != "${detatched}" ]; then
+            remote="$(git config --get "branch.${branch}.remote")"
+            repo="$(basename "$(git config --get "remote.${remote}.url")")"
+            extra=""
+        else
+            remote="$(git remote -v | grep origin | grep '(push)' | awk '{print $2}')"
+            repo="$(basename "${remote}")"
+            extra=" (push=>origin)"
+        fi
+
         if ! [[ "" == "${remote}" || "${remote}" =~ ^fatal ]]; then
             if [ "" != "${git}" ]; then
                 git="${git}, "
             fi
-            git="${git}${br}remote${r}=${bg}${remote}${r}"
+            git="${git}${br}remote${r}=${bg}${remote}${r}${extra}"
         fi
 
-        local repo="$(basename "$(git config --get "remote.${remote}.url")")"
         if [ "" != "${repo}" ]; then
             if [ "" != "${git}" ]; then
                 git=", ${git}"
             fi
-            git="${br}repo${r}=${bg}${repo}${r}${git}"
+            git="${br}repo${r}=${bg}${repo%.git}${r}${git}"
         fi
 
         if [ "" != "${git}" ]; then
