@@ -52,8 +52,8 @@ function dev_prompt {
     local r="${reset}"
     local git=""
     local dir
-    local detatched="${git}${br}branch${reset}=${bg}(detached)${r}"
-    local remote extra repo
+    local detatched="(detached)"
+    local branch hash tag remote extra repo head
 
     if [ "$PWD" == "/" ]; then
         dir="/"
@@ -65,30 +65,56 @@ function dev_prompt {
 
         pushd "${git_dir}" > /dev/null
 
-        local branch="$(git branch --no-color | grep "*" | cut -c3-999 2>&1)"
-        local hash="$(git log -1 --oneline --no-color|awk '{print $1}' 2>&1)"
-        local tag="$(git describe --exact-match "${hash}" 2>&1)"
+        branch="$(git branch --no-color | grep "*" | cut -c3-999 2>&1)"
+        hash="$(git log -1 --oneline --no-color|awk '{print $1}' 2>&1)"
+        tag="$(git describe --exact-match "${hash}" 2>&1)"
 
-        if [[ "" != "${branch}" && "(HEAD" != "${branch:0:5}" ]]; then
-            git="${git}${br}branch${reset}=${bg}${branch}${r}"
-        elif ! [[ "" == "${tag}" || "${tag}" =~ ^fatal ]]; then
-            git="${br}tag${r}=${bg}${tag}${r}"
-            branch="${detatched}"
-        elif [ "(HEAD detached at" == "${branch:0:17}" ]; then
-            git="${br}HEAD${reset}=${bg}${hash}${r}"
-            branch="${detatched}"
-        else
-            git=""
+
+        remote="$(git config --get "branch.${branch}.remote")"
+        if [ "" == "${remote}" ]; then
+            remote="$(git remote -v | grep origin | grep '(push)' | awk '{print $2}')"
+            extra=" (push=>origin)"
         fi
 
-        if [ "${branch}" != "${detatched}" ]; then
-            remote="$(git config --get "branch.${branch}.remote")"
-            repo="$(basename "$(git config --get "remote.${remote}.url")")"
-            extra=""
-        else
-            remote="$(git remote -v | grep origin | grep '(push)' | awk '{print $2}')"
+        repo="$(basename "$(git config --get "remote.${remote}.url")")"
+        if [ "" == "${repo}" ]; then
             repo="$(basename "${remote}")"
-            extra=" (push=>origin)"
+        fi
+
+        if [[ "" == "${branch}" || "(HEAD" == "${branch:0:5}" ]] ; then
+            if ! [[ "" == "${tag}" || "${tag}" =~ ^fatal ]]; then
+                branch="${detatched}"
+            fi
+        fi
+
+        if [ "(HEAD detached at" == "${branch:0:17}" ]; then
+            head="${hash}"
+            branch="${detatched}"
+        fi
+
+        if [ "" != "${repo}" ]; then
+            git="${br}repo${r}=${bg}${repo%.git}${r}${git}"
+        fi
+
+        if [ "" != "${branch}" ]; then
+            if [ "" != "${git}" ]; then
+                git="${git}, "
+            fi
+            git="${git}${br}branch${reset}=${bg}${branch}${r}"
+        fi
+
+        if ! [[ "" == "${tag}" || "${tag}" =~ ^fatal ]]; then
+            if [ "" != "${git}" ]; then
+                git="${git}, "
+            fi
+            git="${git}${br}tag${r}=${bg}${tag}${r}"
+        fi
+
+        if [ "" != "${head}" ]; then
+            if [ "" != "${git}" ]; then
+                git="${git}, "
+            fi
+            git="${git}${br}HEAD${reset}=${bg}${head}${r}"
         fi
 
         if ! [[ "" == "${remote}" || "${remote}" =~ ^fatal ]]; then
@@ -96,13 +122,6 @@ function dev_prompt {
                 git="${git}, "
             fi
             git="${git}${br}remote${r}=${bg}${remote}${r}${extra}"
-        fi
-
-        if [ "" != "${repo}" ]; then
-            if [ "" != "${git}" ]; then
-                git=", ${git}"
-            fi
-            git="${br}repo${r}=${bg}${repo%.git}${r}${git}"
         fi
 
         if [ "" != "${git}" ]; then
