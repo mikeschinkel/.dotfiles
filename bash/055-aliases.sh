@@ -60,3 +60,6 @@ alias fh=find_home_grep
 alias f=find_grep
 
 echo -e ""
+
+alias cdown='. run-cdown'
+alias cup='. run-cup'

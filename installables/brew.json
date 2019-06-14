@@ -1,0 +1,20 @@
+{
+  "id": "brew",
+  "target_os": "macos",
+  "method": "ruby",
+  "ruby": {
+    "options": "-e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
+  },
+  "exports": {
+    "HOMEBREW_GITHUB_API_TOKEN": {
+      "secret": ".github.homebrew.access_token"
+    }
+  },
+  "validation": [
+    "[[ \"$(brew doctor | grep \"Your system is ready to brew.\")\" == \"Your system is ready to brew.\" ]] && echo 1 || echo 0"
+  ],
+  "requires": [
+    "xcode-tools"
+  ]
+}
+

@@ -1,0 +1,11 @@
+{
+  "id": "vitualbox",
+  "target_os": "macos",
+  "method": "brew",
+  "brew": {
+    "options": "cask"
+  },
+  "requires": [
+    "brew"
+  ]
+}

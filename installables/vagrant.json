@@ -1,0 +1,11 @@
+{
+  "id": "vagrant",
+  "target_os": "macos",
+  "method": "brew",
+  "brew": {
+    "options": "cask"
+  },
+  "requires": [
+    "vitualbox"
+  ]
+}

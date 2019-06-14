@@ -1,0 +1,5 @@
+{
+  "id": "jq",
+  "target_os": "macos",
+  "method": "brew"
+}

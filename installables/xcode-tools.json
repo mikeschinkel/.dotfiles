@@ -1,0 +1,10 @@
+{
+  "id": "xcode-tools",
+  "target_os": "macos",
+  "method": "bash",
+  "sudo": true,
+  "bash": {
+    "command": "xcode-select --install"
+  }
+}
+
