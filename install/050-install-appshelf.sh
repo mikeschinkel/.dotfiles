@@ -20,6 +20,8 @@ echo "Mounting DMG..."
 echo y | hdiutil attach "${dmg_file}"
 echo 
 
+exit
+
 echo "Copying AppShelf.app to ~/Applications..." 
 echo
 cd ~/Applications

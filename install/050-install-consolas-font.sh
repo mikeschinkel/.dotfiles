@@ -7,12 +7,10 @@
 
 echo Installing Consolas Font...
 
-brew install cabextract
 cd /tmp
-curl -O http://download.microsoft.com/download/f/5/a/f5a3df76-d856-4a61-a6bd-722f52a5be26/PowerPointViewer.exe
-cabextract PowerPointViewer.exe
-cabextract ppviewer.cab
-
+wget https://www.wfonts.com/download/data/2014/12/06/consolas/consolas.zip
+unzip consolas.zip
 echo Click [INSTALL] in Font Book to install Consolas font.
 source pause "Press any key to open Font Book..."
 open CONSOLA*.TTF  
+rm CONSOLA*.*

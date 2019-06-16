@@ -1,22 +1,20 @@
 #!/usr/bin/env bash
 #
-# PHP versions installed in /usr/local/opt
-#
-# See: 
-#		https://getgrav.org/blog/mac-os-x-apache-setup-multiple-php-versions
+# Latest PHP versions installed in /usr/local/bin/php
 #
 
 clear
 echo Installing PHP...
 echo
+brew install php
 
-brew tap homebrew/dupes
-brew tap homebrew/versions
-brew tap homebrew/homebrew-php
 
-switch-php "5.3" "unlink"
-switch-php "5.4" "unlink"
-switch-php "5.5" "unlink"
-switch-php "5.6" "unlink"
-switch-php "7.0"
+# See:
+#		https://getgrav.org/blog/mac-os-x-apache-setup-multiple-php-versions
+#
+# switch-php "5.3" "unlink"
+# switch-php "5.4" "unlink"
+# switch-php "5.5" "unlink"
+# switch-php "5.6" "unlink"
+# switch-php "7.0"
 

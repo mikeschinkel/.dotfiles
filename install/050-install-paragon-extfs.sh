@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
 #
-# See http://www.kedisoft.com/kb/index.php?n=AppShelf.FAQ
+# See https://my.paragon-software.com/#/dashboard/downloads
+# Set https://dl.paragon-software.com/esd/Paragon-1092-PEU_MacInstallUnlock_11.2.16.dmg
 #
 
 echo Installing Paragon Software ExtFS...
 echo
 
 save_dir=$(pwd)
-dmg_file="${DOTFILES_DIR}/dmgs/Paragon-270-PEU_MacInstallUnlock_9.8.620_000.dmg"
+cd /tmp
+
+dmg_file="${DOTFILES_DIR}/packages/Paragon-1092-PEU_MacInstallUnlock_11.2.16.dmg"
 
 echo "Mounting DMG..."
 echo y | hdiutil attach "${dmg_file}"
 echo 
+exit
 
 echo "Running Installer..." 
 echo

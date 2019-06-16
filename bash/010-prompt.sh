@@ -63,20 +63,27 @@ function dev_prompt {
     git_dir="$(_get_git_dir)"
     if [ -d "${git_dir}" ]; then
 
+
+
         pushd "${git_dir}" > /dev/null
 
-        branch="$(git branch --no-color | grep "*" | cut -c3-999 2>&1)"
-        hash="$(git log -1 --oneline --no-color|awk '{print $1}' 2>&1)"
-        tag="$(git describe --exact-match "${hash}" 2>&1)"
+        branch="$(git branch --no-color 2>&1 | grep "*" 2>&1 | cut -c3-999 2>&1)"
+        hash="$(git log -1 --oneline --no-color 2>&1|awk '{print $1}' 2>&1)"
 
+        if [ "fatal:" != "${hash}" ]; then
+            tag="$(git describe --exact-match "${hash}" 2>&1)"
+            remote="$(git config --get "branch.${branch}.remote")"
+        else
+            tag=""
+            remote=""
+        fi
 
-        remote="$(git config --get "branch.${branch}.remote")"
         if [ "" == "${remote}" ]; then
             remote="$(git remote -v | grep origin | grep '(push)' | awk '{print $2}')"
             extra=" (push=>origin)"
         fi
 
-        repo="$(basename "$(git config --get "remote.${remote}.url")")"
+        repo="$(basename "$(git config --get "remote.${remote}.url"  2>&1)")"
         if [ "" == "${repo}" ]; then
             repo="$(basename "${remote}")"
         fi

@@ -1,0 +1,14 @@
+{
+	"color_scheme": "Packages/Color Scheme - Default/iPlastic.tmTheme",
+	"extensions":
+	[
+		"php"
+	],
+	"font_size": 18.0,
+	"ignored_packages":
+	[
+		"Vintage",
+		"Package Control"
+	],
+	"tab_size": 4
+}

@@ -8,12 +8,25 @@
 clear
 echo Installing Composer for PHP...
 
-php -r "readfile('http://getcomposer.org/installer');" > composer-setup.php
-php -r "if (hash('SHA384', file_get_contents('composer-setup.php')) === '781c98992e23d4a5ce559daf0170f8a9b3b91331ddc4a3fa9f7d42b6d981513cdc1411730112495fbf9d59cffbf20fb2') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); }"
-echo 
+cd /tmp
+wget https://getcomposer.org/installer
+mv installer composer-setup.php
+hash="$(cat composer-setup.php| openssl dgst -sha384)"
+valid="48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5"
+if [ "${hash}" == "${valid}" ] ; then 
+ 	echo 'Installer verified'
+else
+	echo 'Installer corrupt'
+	exit
+fi
+if [ "$(php -version)" == "-bash: php: command not found" ]; then 
+	echo "PHP not installed"
+	exit
+fi
 php composer-setup.php
-php -r "unlink('composer-setup.php');"
+rm "composer-setup.php"
 echo 
+
 
 echo "Ingore the OpenSSL library (0.9.8zc) warning."
 echo "Composer installed corrrectly despite the warning."

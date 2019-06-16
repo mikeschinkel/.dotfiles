@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 echo Installing HomeBrew Completions...
-brew install homebrew/completions/brew-cask-completion
+brew tap homebrew/homebrew-core
+brew install bash-completion

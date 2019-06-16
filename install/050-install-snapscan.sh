@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 #
+# http://scansnap.com/d/
+#
 
 echo Installing Snapscan software for Fujitsu JavaForOSXiX500...
 

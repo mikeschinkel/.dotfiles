@@ -3,4 +3,4 @@
 echo Installing Backblaze...
 brew cask install backblaze
 
-open "/opt/homebrew-cask/Caskroom/backblaze/latest/Backblaze Installer.app"
+open "/usr/local/Caskroom/backblaze/latest/Backblaze Installer.app"

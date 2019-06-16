@@ -8,22 +8,24 @@
 #	- https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/lpadmin.8.html
 #   - networksetup -listallhardwareports
 #
-
+basename="mac-mf-v10111-00"
+filename="${basename}.dmg"
 
 echo "Installing Canon Printer Drivers..."
 #wget http://support.apple.com/downloads/DL1742/en_US/canonprinterdrivers3.3.dmg
-wget http://gdlp01.c-wss.com/gds/4/0100004534/10/Mac_MF_Ver1051_00.dmg
+wget "http://gdlp01.c-wss.com/gds/1/0100009331/06/${filename}"
 echo 
 
 
 echo "Mounting DMG..."
 #hdiutil attach canonprinterdrivers3.3.dmg
-hdiutil attach Mac_MF_Ver1051_00.dmg
+hdiutil attach "${filename}"
 echo 
+
 
 echo "Installing Canon Printer Drivers..."
 #sudo installer -package "/Volumes/Canon Inkjet Printer Drivers/CanonPrinterDrivers.pkg" -target /
-sudo installer -package "/Volumes/Mac_MF_Ver1051_00/MF_Printer_Installer.pkg" -target /
+sudo installer -package "/Volumes/${basename}/MF_Printer_Installer.pkg" -target /
 echo
 
 
@@ -33,9 +35,9 @@ networksetup -setnetworkserviceenabled "Display Ethernet" on
 echo 
 
 echo Cleaning up...
-detach-dmg "Mac_MF_Ver1051_00"
+detach-dmg "${basename}"
 
-rm Mac_MF_Ver1051_00.dmg
+rm "${filename}"
 echo
 
 echo "Adding Canon Printer Drivers..."
