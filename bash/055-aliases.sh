@@ -44,6 +44,8 @@ alias gcm=git_commit_with_message
 alias gl3="git log -3"
 alias gl9="git log -9"
 
+git config --global alias.tags 'tag -n99'
+
 #
 # Find from Root with Grep
 #
