@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo "/Users/mschinkel/.pub-cache/bin"
+echo "/Users/mikeschinkel/.pub-cache/bin"

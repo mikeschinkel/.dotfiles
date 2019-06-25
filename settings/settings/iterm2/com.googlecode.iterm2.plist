@@ -742,7 +742,7 @@
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
-			<string>/Users/mschinkel</string>
+			<string>/Users/mikeschinkel</string>
 		</dict>
 	</array>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
@@ -830,7 +830,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/mschinkel/.dotfiles/private/settings/iterm2</string>
+	<string>/Users/mikeschinkel/.dotfiles/private/settings/iterm2</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnQuit</key>
