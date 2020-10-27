@@ -23,7 +23,6 @@ cd ~/
 #    history -r ~/.bash_history
 #    history -w ${HISTFILE}
 #fi
-test -e "${DOTFILES_DIR}/iterm2_shell_integration.sh" && source "${DOTFILES_DIR}/iterm2_shell_integration.sh"
 
 echo "Bash initialization complete."
 
