@@ -65,3 +65,6 @@ echo -e ""
 
 alias cdown='. run-cdown'
 alias cup='. run-cup'
+
+
+alias largest-files='find . -type f -exec du -a {} + | sort -n -r | head -n 20'
