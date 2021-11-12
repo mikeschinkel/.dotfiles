@@ -1,14 +1,26 @@
 #!/bin/bash
 #
 #
-echo "Running .dotfiles/bash/060-completions.sh..."
+printf "Running .dotfiles/bash/060-completions.sh...\n\n"
 
-echo "Installing Brew completions"
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-	source $(brew --prefix)/etc/bash_completion
+if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+  printf "   Installing Brew completions\n"
+   source "$(brew --prefix)/etc/bash_completion"
 fi
-echo -e ""
 
-echo "Installing Git completions"
-source "${DOTFILES_DIR}/git/git-completion.bash"
+if [ -f "${NVM_DIR}/bash_completion" ]; then
+  printf "   Installing NVM completions\n"
+  source "${NVM_DIR}/bash_completion"
+fi
+
+if [ -f ${DOTFILES_DIR}/git/git-completion.bash ]; then
+  printf "   Installing Git completions\n"
+  source ${DOTFILES_DIR}/git/git-completion.bash
+fi
+
+if [ -e "${HOME}/.iterm2_shell_integration.bash" ]; then
+  printf "   Installing iTerm2 shell integrations\n"
+  source "${HOME}/.iterm2_shell_integration.bash"
+fi
+
 echo -e ""

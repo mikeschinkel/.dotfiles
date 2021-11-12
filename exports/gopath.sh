@@ -2,4 +2,3 @@
 
 echo "/Users/mikeschinkel/go"
 
-.rvm

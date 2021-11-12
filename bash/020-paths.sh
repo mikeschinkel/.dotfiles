@@ -9,7 +9,7 @@ echo "Running .dotfiles/bash/020-paths.sh..."
 add_path() {
     if [[ "$PATH" != *":$1:"* ]]; then
 		#echo "  Adding Path $1..."
-        PATH="$1:${PATH}"
+        PATH="${PATH}:$1"
     fi
 }
 
@@ -18,32 +18,23 @@ add_path() {
 #     DOTFILES_DIR=$(dirname $(pwd))
 # fi
 
-add_path "${DOTFILES_DIR}/backup"
-
-add_path "/usr/local/bin"
+add_path "${DOTFILES_DIR}/bin"
 add_path "/usr/local/sbin"
 add_path "/opt/local/bin"
 add_path "/opt/local/sbin"
-add_path "/opt/wplib"
 
-path_scripts="${DOTFILES_DIR}/paths/*.sh"
-
+path_scripts="$(find "${DOTFILES_DIR}/paths/"*.sh | sort)"
 for path_script in $path_scripts; do
 
     #echo "    Processing ${path_script} file..";
 
     chmod +x $path_script
-    path_value=$(source "${path_script}")
+    path_value="$(source "${path_script}")"
     add_path "${path_value}"
 
 done
 
-add_path "${DOTFILES_DIR}/bin"
+add_path "${DOTFILES_DIR}/backup"
 
-echo
-echo "  PATH:"
-for DIR in $(echo "${PATH}" | tr ":" "\n")
-do
-    echo "    ${DIR}"
-done
-echo
+printf "\n  PATH:\n\t%s\n\n" "${PATH//:/$'\n\t'}"
+

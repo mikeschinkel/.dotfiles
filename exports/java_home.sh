@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-/usr/libexec/java_home
+echo "/usr/libexec/java_home"

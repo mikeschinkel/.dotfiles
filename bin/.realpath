@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#https://newbedev.com/bash-script-absolute-path-with-os-x
+
+pushdir "$(dirname "$1")" >/dev/null 2>&1
+link=$(readlink "$(basename "$1")")
+while [ "$link" ]; do
+  cd "$(dirname "$link")" || { echo "realpath() failed"; exit 1; }
+  link=$(readlink "$(basename "$1")")
+done
+real="$(pwd)/$(basename "$1")"
+popdir >/dev/null 2>&1
+echo "${real}"
