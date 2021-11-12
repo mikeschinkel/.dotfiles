@@ -12,7 +12,7 @@ echo
 #echo
 #echo "   Indentifying OS X's Ruby in /usr/bin..."
 #RUBIES=(
-#	/usr/bin 
+#	/usr/bin
 #	~/.rubies/*
 #)
 #echo "   Changing to Ruby 2.3.x..."
@@ -21,5 +21,8 @@ echo
 
 echo "   Sourcing rvm..."
 source /Users/mikeschinkel/.rvm/scripts/rvm
-
+# Load RVM into a shell session *as a function*
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+  source "$HOME/.rvm/scripts/rvm"
+fi
 echo

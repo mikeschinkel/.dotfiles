@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo "/Users/mikeschinkel/go"
+echo "/usr/local/opt/liquibase/libexec.sh"

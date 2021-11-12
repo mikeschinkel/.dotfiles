@@ -9,19 +9,9 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 
 #
-# Present Sites Menu
-#
-alias m=". m"
-
-#
 # Reboot Mac Mini
 #
 alias rmm="ssh mikeschinkel@mac-mini.local 'sudo reboot'"
-
-#
-# Quick to Box CLI dir
-# 
-alias cdbc="cd /usr/local/bin/boxcli"
 
 #
 # Vagrant
@@ -41,8 +31,8 @@ alias gs="git status"
 alias gpl="git pull"
 alias gps="git push"
 alias gcm=git_commit_with_message
-alias gl3="git log -3"
-alias gl9="git log -9"
+alias gl="git log"
+alias glo="git log --oneline -20"
 
 git config --global alias.tags 'tag -n99'
 
@@ -62,9 +52,6 @@ alias fh=find_home_grep
 alias f=find_grep
 
 echo -e ""
-
-alias cdown='. run-cdown'
-alias cup='. run-cup'
 
 
 alias largest-files='find . -type f -exec du -a {} + | sort -n -r | head -n 20'

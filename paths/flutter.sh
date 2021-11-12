@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo "/Users/mikeschinkel/flutter/bin"
+echo "${HOME}/flutter/bin"
