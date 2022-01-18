@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-echo "/Users/mikeschinkel/go"
+echo "/Users/mikeschinkel/go/gopath"
 

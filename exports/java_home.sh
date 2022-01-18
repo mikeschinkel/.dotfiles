@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-echo "/usr/libexec/java_home"
+echo "/Users/mikeschinkel/Library/Java/JavaVirtualMachines/openjdk-17.0.1/Contents/Home"
+

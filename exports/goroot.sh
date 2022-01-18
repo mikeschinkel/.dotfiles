@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo "/usr/local/Cellar/go/1.17.2/libexec"
+echo "/Users/mikeschinkel/go/go1.17.3"
