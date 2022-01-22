@@ -12,7 +12,8 @@
 echo "Running .dotfiles/bash/010-prompt.sh..."
 
 function _get_project_json() {
-    local dir="$(pwd)"
+    local dir
+    dir="$(pwd)"
     until [ "/" == "${dir}" ] ; do
         if [ -f "${dir}/project.json" ] ; then
             echo "$(cat "${dir}/project.json")"
@@ -23,10 +24,23 @@ function _get_project_json() {
 }
 
 function _get_git_dir() {
-    local dir="$(pwd)"
+    local dir
+    dir="$(pwd)"
     until [ "/" == "${dir}" ] ; do
         if [ -d "${dir}/.git" ] ; then
             echo "${dir}/.git"
+            break
+        fi
+        dir="$(dirname "${dir}")"
+    done
+}
+
+function _get_go_mod() {
+    local dir
+    dir="$(pwd)"
+    until [ "/" == "${dir}" ] ; do
+        if [ -f "${dir}/go.mod" ] ; then
+            echo "${dir}/go.mod"
             break
         fi
         dir="$(dirname "${dir}")"
@@ -51,23 +65,23 @@ function dev_prompt {
     local bb="${bold}${blue}"
     local r="${reset}"
     local git=""
-    local dir
     local detatched="(detached)"
-    local branch hash tag remote extra repo head
+    local dir branch hash tag remote extra repo head remote_url pushed hostname go_mod module firstword
 
     if [ "$PWD" == "/" ]; then
         dir="/"
     else
         dir="\w/"
     fi
+    pushed=0
     git_dir="$(_get_git_dir)"
     if [ -d "${git_dir}" ]; then
 
+        if pushd "${git_dir}" >/dev/null 2>&1; then
+          pushed=1
+        fi
 
-
-        pushd "${git_dir}" > /dev/null
-
-        branch="$(git branch --no-color 2>&1 | grep "*" 2>&1 | cut -c3-999 2>&1)"
+        branch="$(git branch --no-color 2>&1 | head -n 1 | awk '{print$2}')"
         hash="$(git log -1 --oneline --no-color 2>&1|awk '{print $1}' 2>&1)"
 
         if [ "fatal:" != "${hash}" ]; then
@@ -79,17 +93,20 @@ function dev_prompt {
         fi
 
         if [ "" == "${remote}" ]; then
-            remote="$(git remote -v | grep origin | grep '(push)' | awk '{print $2}')"
-            extra=" (push=>origin)"
+            remote="origin"
         fi
 
-        repo="$(basename "$(git config --get "remote.${remote}.url"  2>&1)")"
+        remote_url="$(git remote -v | grep "${remote}" | grep '(push)' | awk '{print $2}')"
+        extra=" (push=>${cyan}${remote_url}${r})"
+
+        repo="$(basename "$(git config --get "remote.${remote}.url"  2>/dev/null)")"
         if [ "" == "${repo}" ]; then
             repo="$(basename "${remote}")"
+            repo="${repo%.git}"
         fi
 
         if [[ "" == "${branch}" || "(HEAD" == "${branch:0:5}" ]] ; then
-            if ! [[ "" == "${tag}" || "${tag}" =~ ^fatal ]]; then
+            if ! [[ "" == "${tag}" || "${tag:0:5}" == "fatal" ]]; then
                 branch="${detatched}"
             fi
         fi
@@ -105,49 +122,63 @@ function dev_prompt {
 
         if [ "" != "${branch}" ]; then
             if [ "" != "${git}" ]; then
-                git="${git}, "
+                git="${git} "
             fi
-            git="${git}${br}branch${reset}=${bg}${branch}${r}"
+            git="${git}${br}branch${r}=${bg}${branch}${r}"
         fi
 
         if ! [[ "" == "${tag}" || "${tag}" =~ ^fatal ]]; then
             if [ "" != "${git}" ]; then
-                git="${git}, "
+                git="${git} "
             fi
             git="${git}${br}tag${r}=${bg}${tag}${r}"
         fi
 
         if [ "" != "${head}" ]; then
             if [ "" != "${git}" ]; then
-                git="${git}, "
+                git="${git} "
             fi
             git="${git}${br}HEAD${reset}=${bg}${head}${r}"
         fi
 
         if ! [[ "" == "${remote}" || "${remote}" =~ ^fatal ]]; then
             if [ "" != "${git}" ]; then
-                git="${git}, "
+                git="${git} "
             fi
-            git="${git}${br}remote${r}=${bg}${remote}${r}${extra}"
+            git="${git}${br}remote${r}=${bg}${remote}${r}${r}${extra}"
         fi
 
         if [ "" != "${git}" ]; then
-            git="${bb}GIT:${r}     ${git}\n"
+            git="${bb}GIT${r}: ${git}\n"
         fi
 
-        popd > /dev/null
+        if [ $pushed -eq 1 ]; then
+          popd > /dev/null 2>&1 || echo >/dev/null
+        fi
 
+    fi
+
+    go_mod="$(_get_go_mod)"
+
+    if [ ! -f "${go_mod}" ]; then
+      module=""
+    else
+      module="$(grep -m 1 . "${go_mod}")"
+      firstword="$(echo "${module}"|awk '{print$1}')"
+      if [ "${firstword}" != "module" ]; then
+        module=""
+      else
+        module="$(echo "${module}"|awk '{print$2}')"
+        if [ "${module}" != "" ]; then
+            project="${bb}Go${r}: ${br}module${r}=${bg}${module}${r}"
+        fi
+      fi
     fi
 
     json="$(_get_project_json)"
-    if [ "" == "${json}" ]; then
-        project=""
-    else
-        project="$(echo $json|jq -r '.hostname')"
-    fi
-
-    if [ "" != "${project}" ]; then
-        project="${bb}Project:${r} ${br}host${r}=${bg}${project}${r}"
+    if [ "" != "${json}" ]; then
+        hostname="$(echo $json|jq -r '.hostname')"
+        project="${bb}Project${r}: ${br}host${r}=${bg}${hostname}${r}"
     fi
 
     if [[ "" != "${project}" && "" != "${git}" ]]; then
@@ -156,7 +187,7 @@ function dev_prompt {
 
     dir="${bc}${dir}\n"
 
-    PS1="\n${git}${project}${dir}${reset}${green}\$${reset} "
+    PS1="\n${project}${git}${dir}${reset}${green}\$${reset} "
 
 }
 
