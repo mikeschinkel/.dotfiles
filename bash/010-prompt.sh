@@ -60,7 +60,7 @@ function dev_prompt {
     local bright='\[\e[39m\]'
     local bc="${bold}${cyan}"
     local bg="${bold}${green}"
-    local by="${bold}${yellow}"
+    local by="${bold}${yellow}"œ
     local br="${bold}${red}"
     local bb="${bold}${blue}"
     local r="${reset}"
@@ -81,7 +81,7 @@ function dev_prompt {
           pushed=1
         fi
 
-        branch="$(git branch --no-color 2>&1 | head -n 1 | awk '{print$2}')"
+        branch="$(git branch --no-color 2>&1 | grep "* " | awk '{print$2}')"
         hash="$(git log -1 --oneline --no-color 2>&1|awk '{print $1}' 2>&1)"
 
         if [ "fatal:" != "${hash}" ]; then
