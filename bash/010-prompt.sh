@@ -66,7 +66,7 @@ function dev_prompt {
     local r="${reset}"
     local git=""
     local detatched="(detached)"
-    local dir branch hash tag remote extra repo head remote_url pushed hostname go_mod module firstword
+    local dir branch hash tag remote extra repo head remote_url pushed hostname go_mod module firstword project
 
     if [ "$PWD" == "/" ]; then
         dir="/"
@@ -159,6 +159,8 @@ function dev_prompt {
     fi
 
     go_mod="$(_get_go_mod)"
+
+    echo $module
 
     if [ ! -f "${go_mod}" ]; then
       module=""
