@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
+if [ "$1" == "" ]; then
+  echo "Usage: config <jw_path>"
+  exit 1
+fi
 jq -r $1 "${DOTFILES_DIR}/config/config.json"

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-ver="go1.18"
-ln -sf "/Users/mikeschinkel/go/${ver}/bin/go" /usr/local/bin/go >/dev/null 2>&1
+ver="$(config .versions.go)"
+ln -sf "/Users/mikeschinkel/go/go${ver}/bin/go" /usr/local/bin/go >/dev/null 2>&1
 echo "${ver}"

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "" ]; then
+  echo "Usage: setgover <go_ver>"
+  exit 1
+fi
+config_json="${DOTFILES_DIR}/config/config.json"
+tmpfile=$(mktemp)
+jq ".versions.go=\"$1\"" "${config_json}" > $tmpfile && mv "${tmpfile}" "${config_json}"
