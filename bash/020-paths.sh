@@ -7,7 +7,7 @@
 echo "Running .dotfiles/bash/020-paths.sh..."
 
 add_path() {
-    if [[ "$PATH" != *":$1:"* ]]; then
+    if [[ ":${PATH}:" != *":$1:"* ]]; then
 		#echo "  Adding Path $1..."
         PATH="${PATH}:$1"
     fi

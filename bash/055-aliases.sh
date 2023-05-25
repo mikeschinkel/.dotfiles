@@ -55,3 +55,6 @@ echo -e ""
 
 
 alias largest-files='find . -type f -exec du -a {} + | sort -n -r | head -n 20'
+
+
+alias move-download="rsync -avzh --remove-source-files --progress ~/Downloads/ /Volumes/JetDrive/Downloads && find ~/Downloads -type d -empty -delete"
