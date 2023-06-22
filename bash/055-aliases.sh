@@ -51,9 +51,6 @@ alias fh=find_home_grep
 #
 alias f=find_grep
 
-echo -e ""
-
-
 alias largest-files='find . -type f -exec du -a {} + | sort -n -r | head -n 20'
 
 

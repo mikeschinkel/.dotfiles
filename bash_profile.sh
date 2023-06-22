@@ -5,7 +5,7 @@ echo "Running .dotfiles/bash_profile.sh..."
 cd ~/.dotfiles/
 export DOTFILES_DIR=$(pwd)
 
-for bash_file in bash/*.sh; do
+for bash_file in bash/0*.sh; do
 
 	source "${bash_file}"
 
@@ -24,7 +24,7 @@ cd ~/
 #    history -w ${HISTFILE}
 #fi
 
-echo "Bash initialization complete."
+printf "\nBash initialization complete."
 
 #
 # Display Menu 

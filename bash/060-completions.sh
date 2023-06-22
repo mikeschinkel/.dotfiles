@@ -13,14 +13,8 @@ if [ -f "${NVM_DIR}/bash_completion" ]; then
   source "${NVM_DIR}/bash_completion"
 fi
 
-if [ -f ${DOTFILES_DIR}/git/git-completion.bash ]; then
-  printf "   Installing Git completions\n"
-  source ${DOTFILES_DIR}/git/git-completion.bash
-fi
-
-if [ -e "${HOME}/.iterm2_shell_integration.bash" ]; then
-  printf "   Installing iTerm2 shell integrations\n"
-  source "${HOME}/.iterm2_shell_integration.bash"
-fi
+for bash_file in bash/*.bash; do
+	source "${bash_file}"
+done
 
 echo -e ""

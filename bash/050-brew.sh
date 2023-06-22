@@ -2,7 +2,7 @@
 #
 
 echo "Running .dotfiles/bash/050-brew.sh..."
-echo 
+
 
 #Run as a Daemon in the background
 screen -dm "update_brew" "brew update"
