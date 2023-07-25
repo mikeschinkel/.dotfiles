@@ -6,5 +6,8 @@
 	"email": {
 		"work": "george.p.burdell@ibm.com",
 		"personal": "georgiep@gatech.edu"
-	}
+	},
+  "versions": {
+    "go": "1.20.6"
+  }
 }
