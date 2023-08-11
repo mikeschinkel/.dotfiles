@@ -1,13 +1,13 @@
 {
 	"name": "George P. Burdell",
 	"apache":{
-		"domain": "local.georgiep.com"
+		"domain": "georgiep.local"
 	},
 	"email": {
 		"work": "george.p.burdell@ibm.com",
 		"personal": "georgiep@gatech.edu"
 	},
   "versions": {
-    "go": "1.20.6"
+    "go": "1.21.0"
   }
 }
