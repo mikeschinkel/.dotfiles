@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 PATH_SLUG=$(to-lower "$1")
-new-script "${DOTFILES_DIR}/paths/${PATH_SLUG}" "echo \"$2\""
-PATH_FILE="${DOTFILES_DIR}/paths/${PATH_SLUG}.sh"
+new-script "${DOTFILES_DIR}/paths/late/${PATH_SLUG}" "echo \"$2\""
+PATH_FILE="${DOTFILES_DIR}/paths/late/${PATH_SLUG}.sh"
 chmod +x "${PATH_FILE}"
 PATH_VALUE=$(bash $PATH_FILE)
 export PATH="${PATH_VALUE}:${PATH}"

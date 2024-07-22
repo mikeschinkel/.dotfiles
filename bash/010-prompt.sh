@@ -16,7 +16,7 @@ function _get_project_json() {
     dir="$(pwd)"
     until [ "/" == "${dir}" ] ; do
         if [ -f "${dir}/project.json" ] ; then
-            echo "$(cat "${dir}/project.json")"
+            cat "${dir}/project.json"
             break
         fi
         dir="$(dirname "${dir}")"
@@ -60,7 +60,7 @@ function dev_prompt {
     local bright='\[\e[39m\]'
     local bc="${bold}${cyan}"
     local bg="${bold}${green}"
-    local by="${bold}${yellow}"œ
+    local by="${bold}${yellow}"
     local br="${bold}${red}"
     local bb="${bold}${blue}"
     local r="${reset}"
