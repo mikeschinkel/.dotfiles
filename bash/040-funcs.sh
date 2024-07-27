@@ -302,6 +302,10 @@ function git_commit_with_message() {
     git commit -m "$*"
 }
 
+function cd_projects() {
+    cd ~/Projects/"$*" || echo "Cannot CD to $*"
+}
+
 function find_root_grep() {
     sudo find / | grep -i "$1"
 }
