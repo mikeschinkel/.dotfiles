@@ -358,7 +358,7 @@ function search() {
   pattern="$1"
   if [ -d "${pattern}" ]; then
     # If it's a directory, search recursively within that directory
-    grep -r "${text}" "${pattern}"
+    grep -R "${text}" "${pattern}"
     return
   fi
 
@@ -371,7 +371,7 @@ function search() {
   echo "Pattern: ${pattern}"
 
   # shellcheck disable=SC2086
-  files="$(find ${dir} -name "${pattern}" -print -quit)"
+  files="$(find -${dir} -name "${pattern}" -print -quit)"
   if [ -z "${files}" ] ; then
     echo "ERROR: $1 does not match any files or directories."
     echo "${usage}"
@@ -379,5 +379,5 @@ function search() {
   fi
 
   # Search using grep with the --include option for the glob pattern
-  grep -r --include="${pattern}" "${text}" "${dir}"  2>/dev/null
+  grep -R --include="${pattern}" "${text}" "${dir}"  2>/dev/null
 }
