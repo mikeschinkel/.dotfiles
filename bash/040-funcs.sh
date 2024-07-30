@@ -371,7 +371,7 @@ function search() {
   echo "Pattern: ${pattern}"
 
   # shellcheck disable=SC2086
-  files="$(find -${dir} -name "${pattern}" -print -quit)"
+  files="$(find -L ${dir} -name "${pattern}" -print -quit)"
   if [ -z "${files}" ] ; then
     echo "ERROR: $1 does not match any files or directories."
     echo "${usage}"
