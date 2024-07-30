@@ -27,6 +27,7 @@ add_path_set() {
   for path_script in $path_scripts; do
       #echo "    Processing ${path_script} file..";
       chmod +x "${path_script}"
+      # shellcheck disable=SC1090
       path_value="$(source "${path_script}")"
       add_path "${sub}" "${path_value}"
   done
