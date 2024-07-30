@@ -3,36 +3,36 @@
 
 echo "Running .dotfiles/bash/050-funcs.sh..."
 
-isEcho() {
+function isEcho() {
     if [[ "1" == "$#" && '--echo' == "$1" ]] ; then 
         return 0 
     fi
     return 1
 }
 
-mcd() {
+function mcd() {
     mkdir "$1"
     cd "$1"
 
 }
 
-ll() {
-    ls -al $1 $2 $3 $4 $5
+function ll() {
+    ls -al "$@"
 }
 
-gc() {
+function gc() {
     git clone "$1"
 }
 
-cd..() {
+function cd..() {
     cd ..
 }
 
-chx() {
+function chx() {
     chmod +x $1
 }
 
-lch() {
+function lch() {
 	stat -f "%OLp" $1
 }
 
@@ -42,30 +42,30 @@ lch() {
 #
 #
 
-cdf() {
-    target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+function cdf() {
+    target="$(osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)')"
     if [ "$target" != "" ]; then
-        cd "$target"; pwd
+        cd "$target" && pwd || echo "Cannot cd ${target}"
     else
         echo 'No Finder window found' >&2
     fi
 }
 
-cman() {
+function cman() {
     env \
-    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-    LESS_TERMCAP_md=$(printf "\e[1;31m") \
-    LESS_TERMCAP_me=$(printf "\e[0m") \
-    LESS_TERMCAP_se=$(printf "\e[0m") \
-    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-    LESS_TERMCAP_ue=$(printf "\e[0m") \
-    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+    LESS_TERMCAP_mb="$(printf "\e[1;31m")" \
+    LESS_TERMCAP_md="$(printf "\e[1;31m")" \
+    LESS_TERMCAP_me="$(printf "\e[0m")" \
+    LESS_TERMCAP_se="$(printf "\e[0m")" \
+    LESS_TERMCAP_so="$(printf "\e[1;44;33m")" \
+    LESS_TERMCAP_ue="$(printf "\e[0m")" \
+    LESS_TERMCAP_us="$(printf "\e[1;32m")" \
     man "$@"
 }
 
-gitssh(){
+function gitssh(){
     trap 'rm -f /tmp/.git_ssh.$$' 0
-    SSH_KEY="~/.ssh/id_rsa"
+    SSH_KEY="${HOME}/.ssh/id_rsa"
     echo "ssh -i $SSH_KEY \$@" > /tmp/.git_ssh.$$
     chmod +x /tmp/.git_ssh.$$
     export GIT_SSH=/tmp/.git_ssh.$$
@@ -73,11 +73,12 @@ gitssh(){
     git "$@"
 }
 
-ccat() {
-    local out colored
-    out=$(/bin/cat $@)
-    colored=$(echo $out | pygmentize -f console -g 2>/dev/null)
-    [[ -n $colored ]] && echo "$colored" || echo "$out"
+function ccat() {
+    local out
+    local colored
+    out="$(/bin/cat "$@")"
+    colored=$(echo "${out}" | pygmentize -f console -g 2>/dev/null)
+    [[ -n $colored ]] && echo "${colored}" || echo "${out}"
 }
 
 #
@@ -125,11 +126,11 @@ function to_lowercase() {
 #
 # $1 - Filename
 #
-# Usage: extension=$(file_extension "foo/bar.baz")
+# Usage: extension=$(fileext "foo/bar.baz")
 #   Result: $extension ==> "baz"
 #
 #
-function file_extension() {
+function fileext() {
     echo "${1##*.}"
 }
 
@@ -139,10 +140,10 @@ function file_extension() {
 #
 # $1 - Filename
 #
-# Usage: basename=$(file_basename "foo/bar.baz")
+# Usage: basename=$(filebase "foo/bar.baz")
 #   Result: $basename ==> "bar"
 #
-function file_basename() {
+function filebase() {
     filename=$(basename "$1")
     echo "${filename%.*}"
 }
@@ -167,7 +168,7 @@ function next_backup_file() {
     # Get the file extension if there is one
     # See: http://stackoverflow.com/a/965072/102699
     #
-    ext=$(file_extension "${bakfile}")
+    ext=$(fileext "${bakfile}")
     if [[ "" == "${ext}" || "${ext}" == "${bakfile}" ]]; then
         ext=""
     fi
@@ -215,7 +216,7 @@ function is_quiet() {
 # $2 - String to echo if not quiet. Prefix string w/"=", "^", "&" or "=" to effect before and after echos.
 #
 function echo_if_not_quiet() {
-    if [ "true" != $(is_quiet "$1") ]; then
+    if [ "true" != "$(is_quiet "$1")" ]; then
         regex="s/\\\n/\n/g"
         control=${2:0:1}
         message=${2:1}
@@ -270,11 +271,11 @@ function exit_if_no_force_option() {
 # $1 - String
 # $2 - Character
 #
-# Usage: vendor_dir=$(substring_after "www/vendor" "/")
+# Usage: vendor_dir=$(subs_after "www/vendor" "/")
 #   Result: $vendor_dir ==> "vendor"
 #
 #
-function substring_after() {
+function subs_after() {
     string="$1"
     character="$2"
     echo "${string#*${character}}"
@@ -286,8 +287,8 @@ function substring_after() {
 # See http://stackoverflow.com/a/8944284/102699
 #
 function quiet_git() {
-    stdout=$(tempfile)
-    stderr=$(tempfile)
+    stdout="$(mktemp)"
+    stderr="$(mktemp)"
 
     if ! git "$@" </dev/null >$stdout 2>$stderr; then
         cat $stderr >&2
@@ -330,3 +331,53 @@ function perms() {
     stat -f '%5A%t%SA%t%N' "${path}"*
 }
 
+#
+# search <pattern> <text>
+#
+#   Search for text in files in either a named directory, a glob, or a directory and glob, e.g.
+#
+#     search ~/Projects io.Reader
+#     search *.go io.Reader
+#     search ~/Projects/*.go io.Reader
+#
+#   Basically this is grep without having to remember how to use the switches correctly
+
+function search() {
+  local pattern
+  local text
+  local files
+  local dir
+  local usage="Usage: search <pattern> <text>"
+
+  text="$2"
+  if [ "${text}" == "" ] ; then
+    echo "${usage}"
+    return 2
+  fi
+
+  pattern="$1"
+  if [ -d "${pattern}" ]; then
+    # If it's a directory, search recursively within that directory
+    grep -r "${text}" "${pattern}"
+    return
+  fi
+
+  # If it's not a directory, assume it's a glob pattern
+  # Extract the directory part from the glob pattern
+  dir=$(dirname "${pattern}")
+  pattern=$(basename "${pattern}")
+
+  echo "Dir: ${dir}"
+  echo "Pattern: ${pattern}"
+
+  # shellcheck disable=SC2086
+  files="$(find ${dir} -name "${pattern}" -print -quit)"
+  if [ -z "${files}" ] ; then
+    echo "ERROR: $1 does not match any files or directories."
+    echo "${usage}"
+    return 1
+  fi
+
+  # Search using grep with the --include option for the glob pattern
+  grep -r --include="${pattern}" "${text}" "${dir}"  2>/dev/null
+}
