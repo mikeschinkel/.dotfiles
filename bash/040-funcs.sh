@@ -12,7 +12,7 @@ function isEcho() {
 
 function mcd() {
     mkdir "$1"
-    cd "$1"
+    cd "$1" || echo "ERROR: Unable to cd $1"
 
 }
 
