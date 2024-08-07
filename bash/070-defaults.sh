@@ -22,3 +22,13 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad DragLock -bool
 # Trackpad > Point & Click > Look up & Data Detectors to “Tap with Three Fingers”
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 2
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 2
+
+# Restart the trackpad
+sudo killall cfprefsd
+
+# Disable Force Click and Haptic Feedback to allow dragging dock items
+defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad ForceSuppressed -bool true
+
+# Restart Dock to apply changes
+killall Dock
