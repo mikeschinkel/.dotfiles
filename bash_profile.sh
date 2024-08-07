@@ -2,15 +2,15 @@
 #
 echo "Running .dotfiles/bash_profile.sh..."
 
-cd ~/.dotfiles/
-export DOTFILES_DIR=$(pwd)
+cd ~/.dotfiles/ || echo "Cannot cd to ~/.dotfiles/"
+export DOTFILES_DIR
+DOTFILES_DIR=$(pwd)
 
 for bash_file in bash/0*.sh; do
-
+	# shellcheck disable=SC1090
 	source "${bash_file}"
-
 done
-cd ~/
+cd ~/ || echo "Cannot cd to ${HOME}"
 
 #HISTCONTROL=erasedups:ignoreboth
 #HISTFILESIZE=2048
