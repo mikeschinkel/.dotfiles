@@ -9,3 +9,16 @@ echo "Running .dotfiles/bash/070-defaults.sh..."
 # See: https://www.macobserver.com/tmo/article/how-manage-the-secret-software-that-google-chrome-installs-on-your-mac
 #
 defaults write com.google.Keystone.Agent checkInterval 604800
+
+
+# Accessibility > Pointer Control > Trackpad Options > Use Trackpad for dragging to “On”
+defaults write com.apple.AppleMultitouchTrackpad Dragging -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -bool true
+
+# Accessibility > Pointer Control > Trackpad Options > Dragging Style to "Without Drag Lock"
+defaults write com.apple.AppleMultitouchTrackpad DragLock -bool false
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad DragLock -bool false
+
+# Trackpad > Point & Click > Look up & Data Detectors to “Tap with Three Fingers”
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 2
