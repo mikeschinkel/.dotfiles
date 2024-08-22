@@ -1,0 +1,31 @@
+#!/usr/bin/expect
+# See https://chatgpt.com/share/a00fccd1-264e-432e-b97d-abb84b7477e7
+
+# Set the timeout duration in seconds
+set timeout 3
+
+# Get the process name from command-line arguments
+set process_name [lindex $argv 0]
+
+# Spawn the sudo command to kill the specified process
+spawn sudo killall $process_name
+
+# Handle the sudo password prompt
+expect {
+    "Password:" {
+        # Prompt the user to enter the password
+        send_user "Password[3 second timeout]: "
+        # Read the password from the user
+        stty -echo
+        expect_user -re "(.*)\n"
+        stty echo
+        send -- "$expect_out(1,string)\r"
+    }
+    timeout {
+        send_user "No password entered or timed out. Skipping command.\n"
+        exit 1
+    }
+    eof {
+        send_user "Command execution finished.\n"
+    }
+}

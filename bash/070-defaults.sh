@@ -24,11 +24,11 @@ defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 2
 
 # Restart the trackpad
-sudo killall cfprefsd
+killall-with-timeout cfprefsd >/dev/null 2>&1
 
 # Disable Force Click and Haptic Feedback to allow dragging dock items
 defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad ForceSuppressed -bool true
 
 # Restart Dock to apply changes
-killall Dock
+killall-with-timeout Dock >/dev/null 2>&1
