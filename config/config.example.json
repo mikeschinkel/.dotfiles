@@ -1,12 +1,22 @@
 {
-	"name": "George P. Burdell",
-	"apache":{
-		"domain": "georgiep.local"
-	},
-	"email": {
-		"work": "george.p.burdell@ibm.com",
-		"personal": "georgiep@gatech.edu"
-	},
+  "name": "George P. Burdell",
+  "apache": {
+    "domain": "georgiep.local"
+  },
+  "email": {
+    "work": "george.p.burdell@ibm.com",
+    "personal": "georgiep@gatech.edu"
+  },
+  "devices": [
+    {
+      "name": "macbook-pro",
+      "ip": "192.168.0.100"
+    },
+    {
+      "name": "win11-desktop",
+      "ip": "192.168.0.200"
+    }
+  ],
   "versions": {
     "go": "1.22.0"
   }
