@@ -21,6 +21,7 @@ alias gl="git log"
 alias glo="git log --oneline -20"
 
 
+# shellcheck disable=SC2139
 alias snd="pbpaste|ncat ${NETCAT_SEND_IP} 12345"
 alias rcv='ncat -l -p 12345'
 
