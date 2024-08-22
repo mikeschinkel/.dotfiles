@@ -20,6 +20,11 @@ alias gcm=git_commit_with_message
 alias gl="git log"
 alias glo="git log --oneline -20"
 
+
+alias snd="pbpaste|ncat ${NETCAT_SEND_IP} 12345"
+alias rcv='ncat -l -p 12345'
+
+
 git config --global alias.tags 'tag -n99'
 
 #
