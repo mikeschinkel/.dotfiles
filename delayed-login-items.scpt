@@ -8,7 +8,7 @@
     <key>ProgramArguments</key>
     <array>
         <string>osascript</string>
-        <string>/Users/mikeschinkel/.dotfiles/delayed-login-items.scpt</string>
+        <string>/Users/miksch1/.dotfiles/delayed-login-items.scpt</string>
     </array>
 
     <key>RunAtLoad</key>

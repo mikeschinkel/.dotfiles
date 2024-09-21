@@ -9,7 +9,7 @@ cd /usr/local/bin
 echo
 
 echo "Cloning WPLib CLI..."
-git clone git@github.com:mikeschinkel/wplib-cli.git
+git clone git@github.com:miksch1/wplib-cli.git
 echo
 
 echo "Adding WPLib CLI to path..."

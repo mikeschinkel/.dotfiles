@@ -3,4 +3,4 @@
 #
 echo "Running .dotfiles/bash/080-macros.sh..."
 
-source /Users/mikeschinkel/.config/bash-macros/bash-macros.sh
+source /Users/miksch1/.config/bash-macros/bash-macros.sh

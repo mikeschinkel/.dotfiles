@@ -37,29 +37,29 @@ A good place to learn about Dotfiles.
 
 ##Other People's Dotfiles Repositories
 
-Whose         | Github Repo
---------------|------------------
-dotphiles     | https://github.com/dotphiles/dotphiles
-mathiasbynens | https://github.com/mathiasbynens/dotfiles
-paulirish     | https://github.com/paulirish/dotfiles
-cowboy        | https://github.com/cowboy/dotfiles
-Gee-Bee       | https://github.com/Gee-Bee/dotfiles
-brainseller   | https://github.com/brainseller/dotfiles
-kian          | https://gitlab.com/kian/dotfiles
-ryanb         | https://github.com/ryanb/dotfiles
-rtomayko      | https://github.com/rtomayko/dotfiles
-bowman        | https://github.com/bowman/.dotfiles/
-alexfroscia   | https://github.com/alexlafroscia/dotfiles
-RayHightower  | https://github.com/RayHightower/.dotfiles 
-skwp          | https://github.com/skwp/dotfiles
-holman        | https://github.com/holman/dotfiles/
-caarlos0      | https://github.com/caarlos0/dotfiles 
-erangaeb      | https://github.com/erangaeb/dotfiles 
-briancain     | https://github.com/briancain/starter-dotfiles 
-kevinelliott  | https://github.com/kevinelliott/.dotfiles 
-s10wen        | https://github.com/s10wen/dotfiles/
-andrewwoods   | https://github.com/andrewwoods/opal
-monfresh      | https://github.com/monfresh/laptop.git
+| Whose         | Github Repo                                   |
+|---------------|-----------------------------------------------|
+| dotphiles     | https://github.com/dotphiles/dotphiles        |
+| mathiasbynens | https://github.com/mathiasbynens/dotfiles     |
+| paulirish     | https://github.com/paulirish/dotfiles         |
+| cowboy        | https://github.com/cowboy/dotfiles            |
+| Gee-Bee       | https://github.com/Gee-Bee/dotfiles           |
+| brainseller   | https://github.com/brainseller/dotfiles       |
+| kian          | https://gitlab.com/kian/dotfiles              |
+| ryanb         | https://github.com/ryanb/dotfiles             |
+| rtomayko      | https://github.com/rtomayko/dotfiles          |
+| bowman        | https://github.com/bowman/.dotfiles/          |
+| alexfroscia   | https://github.com/alexlafroscia/dotfiles     |
+| RayHightower  | https://github.com/RayHightower/.dotfiles     |
+| skwp          | https://github.com/skwp/dotfiles              |
+| holman        | https://github.com/holman/dotfiles/           |
+| caarlos0      | https://github.com/caarlos0/dotfiles          |
+| erangaeb      | https://github.com/erangaeb/dotfiles          |
+| briancain     | https://github.com/briancain/starter-dotfiles |
+| kevinelliott  | https://github.com/kevinelliott/.dotfiles     |
+| s10wen        | https://github.com/s10wen/dotfiles/           |
+| andrewwoods   | https://github.com/andrewwoods/opal           |
+| monfresh      | https://github.com/monfresh/laptop.git        |
 
 ##Dotfile Tools
 - [**dotfiles**](https://github.com/jbernard/dotfiles) - _Dotfile management made easy_

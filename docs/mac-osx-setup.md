@@ -72,7 +72,7 @@ Or:
 
 ###dotfiles
 
-	git clone git@github.com:mikeschinkel/dotfiles.git ~/dotfiles.git
+	git clone git@github.com:miksch1/dotfiles.git ~/dotfiles.git
 	
 
 ###PHP/autoconf/Pear/Pecl

@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+#
+# search <pattern> <text>
+#
+#   Search for text in files in either a named directory, a glob, or a directory and glob, e.g.
+#
+#     search ~/Projects io.Reader
+#     search *.go io.Reader
+#     search ~/Projects/*.go io.Reader
+#
+#   Basically this is grep without having to remember how to use the switches correctly
+
+function search_main() {
+  local pattern
+  local text
+  local files
+  local dir
+  local usage="Usage: search <pattern> <text>"
+
+  text="$2"
+  if [ "${text}" == "" ] ; then
+    echo "${usage}"
+    return 2
+  fi
+
+  pattern="$1"
+  if [ -d "${pattern}" ]; then
+    # If it's a directory, search recursively within that directory
+    grep -R --binary-files=without-match "${text}" "${pattern}"
+    return
+  fi
+
+  # If it's not a directory, assume it's a glob pattern
+  # Extract the directory part from the glob pattern
+  dir=$(dirname "${pattern}")
+  pattern=$(basename "${pattern}")
+
+  echo "Dir: ${dir}"
+  echo "Pattern: ${pattern}"
+
+  # shellcheck disable=SC2086
+  files="$(find -L ${dir} -name "${pattern}" -print -quit)"
+  if [ -z "${files}" ] ; then
+    echo "ERROR: $1 does not match any files or directories."
+    echo "${usage}"
+    return 1
+  fi
+
+  # Search using grep with the --include option for the glob pattern
+  grep -R --binary-files=without-match --include="${pattern}" "${text}" "${dir}"  2>/dev/null
+}
+
+search_main "$1" "$2"

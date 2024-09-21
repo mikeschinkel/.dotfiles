@@ -15,7 +15,7 @@ save_dir=$(pwd)
 #home_dir="/"
 #root_dir="${HOME}/"
 home_dir="/Volumes/MACBOOK-PRO-MIRROR"
-root_dir="${home_dir}/Users/mikeschinkel/"
+root_dir="${home_dir}/Users/miksch1/"
 app_dir="${home_dir}/Applications/PhpStorm.app/Contents/bin/"
 
 phpstorm_ver="100"

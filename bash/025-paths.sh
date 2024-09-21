@@ -39,7 +39,7 @@ printf "\n  PATH:\n\t%s\n\n" "${PATH//:/$'\n\t'}"
 #     DOTFILES_DIR=$(dirname $(pwd))
 # fi
 add_path_set "early"
-add_path "late" "${DOTFILES_DIR}/bin"
+add_path "early" "${DOTFILES_DIR}/bin"
 add_path "late" "/usr/local/sbin"
 add_path "late" "/opt/local/bin"
 add_path "late" "/opt/local/sbin"

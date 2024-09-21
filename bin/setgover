@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
-if [ "$1" == "" ]; then
+GO_VERSION="$1"
+if [ "${GO_VERSION}" == "" ]; then
   echo "Usage: setgover <go_ver>"
   exit 1
 fi
@@ -8,7 +8,9 @@ config_json="${DOTFILES_DIR}/config/config.json"
 tmpfile=$(mktemp)
 jq ".versions.go=\"$1\"" "${config_json}" > $tmpfile && mv "${tmpfile}" "${config_json}"
 
+ln -sf "/Users/miksch1/go/go${GO_VERSION}/bin/go" /usr/local/bin/go >/dev/null 2>&1
+
 export PATH
 export GOROOT
-PATH="$(${DOTFILES_DIR}/paths/go.sh):${PATH}"
+PATH="$(${DOTFILES_DIR}/paths/early/go.sh):${PATH}"
 GOROOT="$(${DOTFILES_DIR}/exports/goroot.sh)"

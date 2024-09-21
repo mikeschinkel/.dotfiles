@@ -10,3 +10,4 @@ licenses/
 php/expect-pear
 purchased/
 private/
+/Brewfile.lock.json

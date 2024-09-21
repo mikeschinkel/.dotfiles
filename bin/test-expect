@@ -3,5 +3,5 @@ spawn printenv
 expect eof
 spawn bash del-path pear
 expect eof
-spawn bash new-path pear "/Users/mikeschinkel/pear/bin"
+spawn bash new-path pear "/Users/miksch1/pear/bin"
 expect eof

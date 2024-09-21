@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo "/Users/mikeschinkel/go/go$(gover)"
+echo "/Users/miksch1/go/go$(gover)"

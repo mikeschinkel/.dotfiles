@@ -13,6 +13,22 @@ alias cdp=cd_projects
 #
 # Git
 #
+alias k='kubectl'
+alias ka='kubectl apply '
+alias kc='kubectl create '
+alias kd='kubectl delete '
+
+#
+# NetCat Send & Receive
+#
+alias rcv='netcat -l -p 12345'
+alias snd='pbpaste|netcat 192.168.1.10 12345'
+
+#
+# Git
+#
+alias grs="git reset --soft"
+alias grh="git reset --soft"
 alias gs="git status"
 alias gpl="git pull"
 alias gps="git push"

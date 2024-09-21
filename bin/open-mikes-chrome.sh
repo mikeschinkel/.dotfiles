@@ -10,8 +10,8 @@
   --no-first-run \
   --disable-fre \
   --no-default-browser-check \
-  --log-file="/Users/mikeschinkel/Projects/savetabs/chrome-debug.log" \
-  --user-data-dir="/Users/mikeschinkel/Library/Application Support/Google/Chrome" \
+  --log-file="/Users/miksch1/Projects/savetabs/chrome-debug.log" \
+  --user-data-dir="/Users/miksch1/Library/Application Support/Google/Chrome" \
   --profile-directory="Profile 1"
 
 

@@ -20,7 +20,7 @@ echo
 #echo
 
 echo "   Sourcing rvm..."
-source /Users/mikeschinkel/.rvm/scripts/rvm
+source /Users/miksch1/.rvm/scripts/rvm
 # Load RVM into a shell session *as a function*
 if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   source "$HOME/.rvm/scripts/rvm"
