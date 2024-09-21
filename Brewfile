@@ -35,13 +35,14 @@ brew "podman"
 brew "podman-compose"
 brew "rancher-cli"
 
-
 brew "kubectl"
 brew "kubernetes-cli"
 brew "ko"
 brew "helm"
 brew "tilt"
 brew "packer"
+brew "minikube"
+brew "qemu"
 
 brew "mutagen-io/mutagen/mutagen"
 brew "hashicorp/tap/terraform"
