@@ -31,9 +31,10 @@ brew "postgresql@14"
 
 brew "act"
 brew "docker"
-brew "podman"
-brew "podman-compose"
-brew "rancher-cli"
+brew "docker-buildx"
+# brew "podman"
+# brew "podman-compose"
+# brew "rancher-cli"
 
 brew "kubectl"
 brew "kubernetes-cli"
