@@ -20,7 +20,7 @@ alias sc='sudo systemctl '
 # k8s
 #
 # shellcheck disable=SC2142
-alias kpod='f() { k get pods $KNS -o json | jq -r '\''.items[]|select(.metadata.labels.app="$1")|.metadata.name'\'' | head -n 1; }; f'
+alias kpod='f() { local N="$2"; if [ -z "${N}" ]; then N=1 ; fi; k get pods $KNS -o json | jq -r '\''.items[]|select(.metadata.labels.app="$1")|.metadata.name'\'' | head -n $N; }; f'
 
 # shellcheck disable=SC2142
 alias kn='f() { [ "$1" ] && sudo kubectl config set-context --current --namespace $1 || sudo kubectl config view --minify | grep namespace | cut -d" " -f6 ; } ; f'
@@ -42,9 +42,11 @@ alias kdel='f() { kubectl delete pod $KNS $(kpod "$1") ; } ; f'
 # shellcheck disable=SC2142
 alias kedit='f() { kubectl edit pod $KNS $(kpod "$1") ; } ; f'
 # shellcheck disable=SC2142
-alias kexec='f() { k exec -it "$1" -- bash; } ; f'
+alias kexec='f() { k exec -it $(kpod "$1") $KNS -- bash; } ; f'
 # shellcheck disable=SC2142
 alias klogs='f() { kubectl logs $KNS $(kpod "$1") $2 $3 $4 $5; } ; f'
+# shellcheck disable=SC2142
+alias kget='f() { kubectl get $1 $KNS $(kpod "$2" 999) $3 $4 $5; } ; f'
 
 # shellcheck disable=SC2142
 alias kx='f() { [ "$1" ] && sudo kubectl config use-context $1 || sudo kubectl config current-context ; } ; f'
@@ -59,7 +61,11 @@ function khelp {
 	echo "ka <yaml>    — kubectl apply -f"
 	echo "kc <...>     — kubectl create"
 	echo "kd <yaml>    — kubectl delete -f"
+	echo
+	echo "kpod <name> <num>  — kubectl get <pod> \$KNS | head -n <num>"
+	echo
 	echo "kns [<ns>|-] — Get or set namespace as \$KNS variable (for these aliases that require namespace)"
+	echo "kget <pod>   — kubectl get <pod> \$KNS"
 	echo "kmake <pod>  — kubectl run <pod> \$KNS in bash on Debian"
 	echo "kexec <pod>  — kubectl exec <pod> \$KNS"
 	echo "kedit <pod>  — kubectl edit <pod> \$KNS"
